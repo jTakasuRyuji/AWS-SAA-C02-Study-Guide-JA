@@ -1,5 +1,5 @@
-# AWS SAA-C02 Study Guide
-This study guide will help you pass the newer AWS Certified Solutions Architect - Associate exam. Ideally, you should reference this guide while working through the following material:
+# AWS SAA-C02 学習ガイド
+このスタディガイドは、新しい AWS 認定ソリューションアーキテクト - アソシエイト試験に合格するために役立ちます。このガイドを参照しながら、以下の内容を学習するのが理想的です：
 
   1. Stephane Maarek's <a href="https://links.datacumulus.com/aws-certified-sa-associate-coupon">Ultimate AWS Certified Solutions Architect Associate 2021 course</a> (permanent discount available through this link) or A Cloud Guru's <a href="https://acloud.guru/learn/aws-certified-solutions-architect-associate">AWS Certified Solutions Architect Associate SAA-C02 course</a>
   2. The FAQs for the most critical services, included in the recommended reading list below
