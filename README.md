@@ -323,12 +323,12 @@ You can encrypt on the AWS supported server-side in the following ways:
 - **Server Side Encryption w/ customer provided keys / SSE - C** - when I give Amazon my own keys that I manage. In this scenario, you concede ease of use in exchange for more control.
 
 ### S3 Versioning:
-- When versioning is enabled, S3 stores all versions of an object including all writes and even deletes.
-- It is a great feature for implicitly backing up content and for easy rollbacks in case of human error.
-- It can be thought of as analogous to Git.
-- Once versioning is enabled on a bucket, it cannot be disabled - only suspended.
-- Versioning integrates w/ lifecycle rules so you can set rules to expire or migrate data based on their version.
-- Versioning also has MFA delete capability to provide an additional layer of security.
+- バージョニングが有効な場合、S3は全ての書き込みや削除を含むオブジェクトの全てのバージョンを保存する。
+- コンテンツを暗黙のうちにバックアップし、人為的なミスがあった場合に簡単にロールバックできる素晴らしい機能だ。
+- これはGitに似ていると考えることができる。
+- 一度バケツでバージョニングを有効にすると、無効にすることはできません。
+- バージョニングはライフサイクルルールと統合されているので、バージョンに基づいてデータを期限切れにしたり移行したりするルールを設定することができます。
+- バージョニングにはMFA削除機能もあり、さらなるセキュリティレイヤーを提供する。
 
 ### S3 Lifecycle Management:
 - Automates the moving of objects between the different storage tiers.
@@ -412,7 +412,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
 ## CloudFront
 
 ### CloudFront の概要:
-The AWS CDN service is called CloudFront. It serves up cached content and assets for the increased global performance of your application. The main components of CloudFront are the edge locations (cache endpoints), the origin (original source of truth to be cached such as an EC2 instance, an S3 bucket, an Elastic Load Balancer or a Route 53 config), and the distribution (the arrangement of edge locations from the origin or basically the network itself). <a href="https://aws.amazon.com/cloudfront/features/">More info on CloudFront's features</a>
+AWSのCDNサービスはCloudFrontと呼ばれている。アプリケーションのグローバルパフォーマンスを向上させるために、キャッシュされたコンテンツやアセットを提供する。CloudFrontの主なコンポーネントは、エッジロケーション（キャッシュエンドポイント）、オリジン（EC2インスタンス、S3バケット、Elastic Load Balancer、Route 53コンフィグなど、キャッシュされる真実のオリジナルソース）、ディストリビューション（オリジンからのエッジロケーションの配置、基本的にはネットワークそのもの）である。
 
 ### CloudFront の詳細:
 - When content is cached, it is done for a certain time limit called the Time To Live, or TTL, which is always in seconds
@@ -463,7 +463,7 @@ Snowballは、大量のデータをAWSに移行するための巨大な物理デ
 ## Storage Gateway
 
 ### Storage Gateway の概要:
-Storage Gateway is a service that connects on-premise environments with cloud-based storage in order to seamlessly and securely integrate an on-prem application with a cloud storage backend. Storage Gateway comes in three flavors: File Gateway, Volume Gateway and Tape Gateway.
+Storage Gatewayは、オンプレミス環境とクラウドベースのストレージを接続し、オンプレミスのアプリケーションとクラウドストレージのバックエンドをシームレスかつ安全に統合するサービスである。Storage Gatewayには3つの種類がある： File Gateway、Volume Gateway、Tape Gatewayである。
 
 
 ### Storage Gateway の詳細:
@@ -490,7 +490,7 @@ Storage Gateway is a service that connects on-premise environments with cloud-ba
 ## Elastic Compute Cloud (EC2)
 
 ### EC2 の概要:
-EC2 spins up resizable server instances that can scale up and down quickly. An instance is a virtual server in the cloud. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance. Its configuration at launch is a live copy of the *Amazon Machine Image (AMI)* that you specify when you launched the instance. EC2 has an extremely reduced time frame for provisioning and booting new instances and EC2 ensures that you pay as you go, pay for what you use, pay less as you use more, and pay even less when you reserve capacity. When your EC2 instance is running, you are charged on CPU, memory, storage, and networking. When it is stopped, you are only charged for EBS storage.
+EC2はサイズ変更可能なサーバーインスタンスをスピンアップし、素早くスケールアップ/ダウンできる。インスタンスとは、クラウド上の仮想サーバーのことだ。Amazon EC2では、インスタンス上で実行されるオペレーティングシステムとアプリケーションを設定・構成できる。起動時の構成は、インスタンスの起動時に指定した*Amazon Machine Image（AMI）*のライブコピーです。EC2では、新しいインスタンスのプロビジョニングと起動にかかる時間が非常に短縮されており、EC2では、使用した分だけ支払い、使用量が増えるほど支払いが減り、容量を予約するとさらに支払いが減るようになっている。EC2インスタンスが稼働しているときは、CPU、メモリ、ストレージ、ネットワークに課金される。停止中は、EBSストレージに対してのみ課金される。
 
 ### EC2 の詳細:
 - You can launch different types of instances from a single AMI. An instance type essentially determines the hardware of the host computer used for your instance. Each instance type offers different compute and memory capabilities. You should select an instance type based on the amount of memory and computing power that you need for the application or software that you plan to run on top of the instance.   
@@ -563,7 +563,7 @@ The following table highlights the many instance states that a VM can be in at a
 ## Elastic Block Store (EBS)
 
 ### EBS の概要:
-An Amazon EBS volume is a durable, block-level storage device that you can attach to a single EC2 instance. You can think of EBS as a cloud-based virtual hard disk. You can use EBS volumes as primary storage for data that requires frequent updates, such as the system drive for an instance or storage for a database application. You can also use them for throughput-intensive applications that perform continuous disk scans.
+Amazon EBSボリュームは、1つのEC2インスタンスにアタッチできる耐久性のあるブロックレベルのストレージデバイスだ。EBSはクラウドベースの仮想ハードディスクと考えることができる。EBSボリュームは、インスタンスのシステムドライブやデータベースアプリケーションのストレージなど、頻繁に更新が必要なデータのプライマリストレージとして使用できる。また、継続的なディスクスキャンを行うスループット重視のアプリケーションにも使用できる。
 
 ### EBS の詳細:
 - EBS volumes persist independently from the running life of an EC2 instance.
@@ -643,7 +643,7 @@ An Amazon EBS volume is a durable, block-level storage device that you can attac
 ## Elastic Network Interfaces (ENI)
 
 ### ENI の概要:
-An elastic network interface is a networking component that represents a virtual network card. When you provision a new instance, there will be an ENI attached automatically and you can create and configure additional network interfaces if desired. When you move a network interface from one instance to another, network traffic is redirected to the new instance. 
+エラスティック・ネットワーク・インターフェースは、仮想ネットワークカードを表すネットワーキングコンポーネントです。新しいインスタンスをプロビジョニングすると、ENIが自動的にアタッチされます。あるインスタンスから別のインスタンスにネットワーク・インターフェイスを移動すると、ネットワーク・トラフィックは新しいインスタンスにリダイレクトされます。
 
 ### ENI の詳細:
 - ENI is used mainly for low-budget, high-availability network solutions
@@ -663,7 +663,7 @@ An elastic network interface is a networking component that represents a virtual
 ## Security Groups
 
 ### Security Groups の概要:
-Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2. They act as a virtual firewall for your instances to control inbound and outbound traffic. When you launch an instance in a VPC, you can assign up to five security groups to the instance and security groups act at the instance level, not the subnet level. 
+セキュリティグループは、EC2でのアクセス（SSH、HTTP、RDPなど）を制御するために使用される。セキュリティグループはインスタンスの仮想ファイアウォールとして機能し、インバウンドとアウトバウンドのトラフィックを制御する。VPCでインスタンスを起動する際、最大5つのセキュリティグループをインスタンスに割り当てることができ、セキュリティグループはサブネットレベルではなくインスタンスレベルで機能する。
 
 ### Security Groups の詳細:
 - Security groups control inbound and outbound traffic for your instances (they act as a Firewall for EC2 Instances) while NACLs control inbound and outbound traffic for your subnets (they act as a Firewall for Subnets). Security Groups usually control the list of ports that are allowed to be used by your EC2 instances and the NACLs control which network or list of IP addresses can connect to your whole VPC.
@@ -682,7 +682,7 @@ Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2. They
 ## Web Application Firewall (WAF)
 
 ### WAF の概要:
-AWS WAF is a web application that lets you allow or block the HTTP(s) requests that are bound for CloudFront, API Gateway, Application Load Balancers, EC2, and other Layer 7 entry points into your AWS environment. AWS WAF gives you control over how traffic reaches your applications by enabling you to create security rules that block common attack patterns, such as SQL injection or cross-site scripting, and rules that filter out specific traffic patterns that you can define. WAF's default rule-set addresses issues like the OWASP Top 10 security risks and is regularly updated whenever new vulnerabilities are discovered.
+AWS WAFは、CloudFront、API Gateway、Application Load Balancers、EC2、およびその他のレイヤー7からAWS環境へのHTTPリクエストを許可またはブロックするWebアプリケーションです。AWS WAFは、SQLインジェクションやクロスサイトスクリプティングなどの一般的な攻撃パターンをブロックするセキュリティルールや、定義した特定のトラフィックパターンをフィルタリングするルールを作成できるため、トラフィックがアプリケーションに到達する方法を制御できる。WAFのデフォルトのルールセットは、OWASPトップ10のセキュリティリスクのような問題に対処し、新しい脆弱性が発見されるたびに定期的に更新されます。
 
 ### WAF の詳細:
 - As mentioned above, WAF operates as a Layer 7 firewall. This grants it the ability to monitor granular web-based conditions like URL query string parameters. This level of detail helps to detect both foul play and honest issues with the requests getting passed onto your AWS environment.
@@ -1463,7 +1463,7 @@ Simple Notification Serviceはプッシュ型のメッセージングサービ�
 ## Kinesis 
 
 ### Kinesis の概要:
-Amazon Kinesis makes it easy to collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information. With Amazon Kinesis, you can ingest real-time data such as video, audio, application logs, website clickstreams, and IoT telemetry data for machine learning, analytics, and other applications. Amazon Kinesis enables you to process and analyze data as it arrives and respond instantly instead of having to wait until all your data is collected before the processing can begin.
+Amazon Kinesisを使用すると、リアルタイムのストリーミングデータを簡単に収集、処理、分析できるため、タイムリーな洞察を得て、新しい情報に迅速に対応できます。Amazon Kinesisを使用すると、機械学習、分析、その他のアプリケーションのために、ビデオ、オーディオ、アプリケーションログ、ウェブサイトのクリックストリーム、IoT遠隔測定データなどのリアルタイムデータを取り込むことができます。Amazon Kinesisを使用すると、すべてのデータが収集されるまで処理を開始するのを待つ必要がなく、データが到着するとすぐに処理して分析し、即座に対応することができます。
 
 ### Kinesis の詳細:
 - Amazon Kinesis makes it easy to load and analyze the large volumes of data entering AWS.
@@ -1497,7 +1497,7 @@ Amazon Kinesis makes it easy to collect, process, and analyze real-time, streami
 ## Lambda
 
 ### Lambda の概要:
-AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume. With Lambda, you can run code for virtually any type of application or backend service - all with zero administration. You upload your code and Lambda takes care of everything required to run and scale your code with high availability. You can set up your code to be automatically triggered from other AWS services or be called directly from any web or mobile app.
+AWS Lambdaを使えば、サーバーのプロビジョニングや管理をすることなくコードを実行できる。利用したコンピュート時間に対してのみ支払いが発生します。Lambdaを使えば、事実上あらゆるタイプのアプリケーションやバックエンド・サービスのコードを、すべてゼロ管理で実行できます。コードをアップロードすると、Lambdaがコードの実行と高可用性でのスケーリングに必要なすべての処理を行います。AWSの他のサービスから自動的にトリガーされるようにコードを設定したり、Webやモバイルアプリから直接呼び出すこともできます。
 
 ### Lambda の詳細:
 - Lambda is a compute service where you upload your code as a function and AWS provisions the necessary details underneath the function so that the function executes successfully. 
@@ -1536,7 +1536,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
 ## API Gateway
 
 ### API Gateway の概要:
-API Gateway is a fully managed service for developers that makes it easy to build, publish, manage, and secure entire APIs. With a few clicks in the AWS Management Console, you can create an API that acts as a “front door” for applications to access data, business logic, or functionality from your back-end services, such as workloads running on EC2) code running on AWS Lambda, or any web application. 
+API Gateway は開発者向けのフルマネージドサービスで、API 全体の構築、公開、管理、セキュリティ確保を容易にします。AWS Management Consoleを数回クリックするだけで、EC2上で動作するワークロードやAWS Lambda上で動作するコード、あるいはWebアプリケーションなど、アプリケーションがバックエンドのサービスからデータやビジネスロジック、機能にアクセスするための「フロントドア」として機能するAPIを作成できる。
 
 ### API Gateway の詳細:
 - Amazon API Gateway handles all the tasks involved in accepting and processing up to hundreds of thousands of concurrent API calls, including traffic management, authorization and access control, monitoring, and API version management.
@@ -1579,7 +1579,7 @@ API Gateway is a fully managed service for developers that makes it easy to buil
 ## CloudFormation
 
 ### CloudFormation の概要:
-CloudFormation is an automated tool for provisioning entire cloud-based environments. It is similar to Terraform where you codify the instructions for what you want to have inside your application setup (X many web servers of Y type with a Z type DB on the backend, etc). It makes it a lot easier to just describe what you want in markup and have AWS do the actual provisioning work involved.
+CloudFormationは、クラウドベースの環境全体をプロビジョニングするための自動化ツールだ。これはTerraformに似ていて、アプリケーションのセットアップで何をしたいのか（X台のYタイプのウェブサーバーとバックエンドのZタイプのDBなど）をコード化する。マークアップで欲しいものを記述するだけで、AWSに実際のプロビジョニング作業をさせることができる。
 
 ### CloudFormation の詳細:
 - The main use case for CloudFormation is for advanced setups and production environments as it is complex and has many robust features.
@@ -1601,7 +1601,7 @@ CloudFormation is an automated tool for provisioning entire cloud-based environm
 ## ElasticBeanstalk
 
 ### ElasticBeanstalk の概要:
-ElasticBeanstalk is another way to script out your provisioning process by deploying existing applications to the cloud. ElasticBeanstalk is aimed toward developers who know very little about the cloud and want the simplest way of deploying their code.
+ElasticBeanstalkは、既存のアプリケーションをクラウドにデプロイすることで、プロビジョニング・プロセスをスクリプト化するもう一つの方法だ。ElasticBeanstalkは、クラウドについてほとんど知識がなく、コードをデプロイする最もシンプルな方法を求めている開発者を対象としている。
 
 ### ElasticBeanstalk の詳細:
 - Just upload your application and ElasticBeanstalk will take care of the underlying infrastructure.
@@ -1612,7 +1612,7 @@ ElasticBeanstalk applies updates to your application by having a duplicate ready
 ## AWS Organizations
 
 ### AWS Organizations の概要:
-AWS Organizations is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage.
+AWS Organizationsは、複数のAWSアカウントを1つの組織に統合し、作成・一元管理できるアカウント管理サービスです。
 
 ### AWS Organizations の詳細:
 - Best practices is to use the root account to manage billing only with separate accounts used to deploy resources.
@@ -1626,7 +1626,7 @@ AWS Organizations is an account management service that enables you to consolida
 
 The following section includes services, features, and techniques that may appear on the exam. They are also extremely useful to know as an engineer using AWS. If the following items do appear on the exam, they will not be tested in detail. You'll just have to know what the meaning is behind the name. It is a great idea to learn each item in depth for your career's benefit, but it is not necessary for the exam.
 
-### What is the Amazon Cognito? 
+### Amazon Cognitoとは何か? 
 - Before discussing Amazon Cognito, it is first important to understand what Web Identity Federation is. Web Identity Federation lets you give your users access to AWS resources after they have successfully authenticated into a web-based identity provider such as Facebook, Google, Amazon, etc. Following a successful login into these services, the user is provided an auth code from the identity provider which can be used to gain temporary AWS credentials.
 - Amazon Cognito is the Amazon service that provides Web Identity Federation. You don’t need to write the code that tells users to sign in for Facebook or sign in for Google on your application. Cognito does that already for you out of the box.
 - Once authenticated into an identity provider (say with Facebook as an example), the provider supplies an auth token. This auth token is then supplied to Cognito which responds with limited access to your AWS environment. You dictate how limited you would like this access to be in the IAM role.
@@ -1640,21 +1640,21 @@ The following section includes services, features, and techniques that may appea
 - You can retrieve a unique Amazon Cognito identifier (identity ID) for your end user immediately if you're allowing unauthenticated users or after you've set the login tokens in the credentials provider if you're authenticating users.
 - When you need to easily add authentication to your mobile and desktop app, think Amazon Cognito.
 
-### What is AWS Resource Access Manager?
+### AWS Resource Access Managerとは何か?
 - AWS Resource Access Manager (RAM) is a service that enables you to easily and securely share AWS resources with any AWS account or within your AWS Organization. You can share AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM.
 - Many organizations use multiple accounts to create administrative or billing isolation, and to limit the impact of errors as part of the AWS Organizations service.
 - RAM eliminates the need to create duplicate resources in multiple accounts, reducing the operational overhead of managing those resources in every single account you own. 
 - You can create resources centrally in a multi-account environment, and use RAM to share those resources across accounts in three simple steps: create a Resource Share, specify resources, and specify accounts.
 - RAM is available at no additional charge.
 
-### What is Athena?
-- Athena is an interactive query service which allows you to interact and query data from S3 using standard SQL commands. This is beneficial for programmatic querying for the average developer. It is serverless, requires no provisioning, and you pay per query and per TB scanned. You basically turn S3 into a SQL supported database by using Athena. 
-- Example use cases:
-  - Query logs that are dumped into S3 buckets as an alternative or supplement to the ELK stack
-  - Setting queries to run business reports based off of the data regularly entering S3
-  - Running queries on click-stream data to have further insight of customer behavior
+### Athenaとは何か?
+- Athenaはインタラクティブなクエリサービスで、標準SQLコマンドを使ってS3からデータを照会することができる。これは一般的な開発者にとってプログラム的なクエリに有益である。サーバーレスで、プロビジョニングが不要で、クエリごととスキャンしたTBごとに支払いが発生する。Athenaを使うことで、S3をSQLでサポートされたデータベースに変えることができる。
+- 使用例
+  - ELKスタックの代替または補足としてS3バケットにダンプされるクエリログ
+  - S3に定期的に入るデータに基づいてビジネスレポートを実行するためのクエリの設定
+  - クリックストリームデータに対してクエリーを実行し、顧客の行動をさらに把握する。
 
-### What is AWS Macie?
+### AWS Macieとは何か?
 - To understand Macie, it is important to understand PII or Personally Identifiable Information:
   - Personal data used to establish an individual’s identity which can be exploited
   - Examples: Social Security number, phone number, home address, email address, D.O.B, passport number, etc.
@@ -1664,12 +1664,12 @@ The following section includes services, features, and techniques that may appea
 - Macie continuously monitors data access activity for anomalies, and delivers alerts when it detects risk of unauthorized access or inadvertent data leaks. 
 - Macie has ability to detect global access permissions inadvertently being set on sensitive data, detect uploading of API keys inside source code, and verify sensitive customer data is being stored and accessed in a manner that meets their compliance standards.
 
-### What is AWS KMS?
-- AWS Key Management Service (AWS KMS) is a managed service that makes it easy for you to create and control the encryption keys used to encrypt your data. The master keys that you create in AWS KMS are protected by FIPS 140-2 validated cryptographic modules. 
-- AWS KMS is integrated with most other AWS services that encrypt your data with encryption keys that you manage. AWS KMS is also integrated with AWS CloudTrail to provide encryption key usage logs to help meet your auditing, regulatory and compliance needs.
-- You can configure your application to use the KMS API to encrypt all data before saving it to disk.
+### AWS KMSとは何か?
+- AWS Key Management Service（AWS KMS）は、データの暗号化に使用する暗号鍵を簡単に作成・管理できるマネージドサービスです。AWS KMSで作成するマスターキーは、FIPS 140-2検証済みの暗号モジュールによって保護されます。
+- AWS KMSは、お客様が管理する暗号鍵でデータを暗号化する他のほとんどのAWSサービスと統合されています。また、AWS KMSはAWS CloudTrailと統合されており、暗号化キーの使用ログを提供することで、監査、規制、コンプライアンスのニーズを満たすことができます。
+- ディスクに保存する前にすべてのデータを暗号化するために、KMS APIを使用するようにアプリケーションを構成することができます。
 
-### What is AWS Secrets Manager?
+### AWS Secrets Managerとは何か?
 - AWS Secrets Manager is an AWS service that makes it easier for you to manage secrets.
 - Secrets can be database credentials, passwords, third-party API keys, and even arbitrary text. You can store and control access to these secrets centrally by using the Secrets Manager console, the Secrets Manager command line interface (CLI), or the Secrets Manager API and SDKs.
 - In the past, when you created a custom application that retrieves information from a database, you typically had to embed the credentials (the secret) for accessing the database directly in the application. When it came time to rotate the credentials, you had to do much more than just create new credentials. You had to invest time to update the application to use the new credentials. Then you had to distribute the updated application. If you had multiple applications that shared credentials and you missed updating one of them, the application would break. 
@@ -1678,49 +1678,49 @@ The following section includes services, features, and techniques that may appea
 - This helps ensure that the secret can't be compromised by someone examining your code, because the secret simply isn't there. 
 - Also, you can configure Secrets Manager to automatically rotate the secret for you according to a schedule that you specify. This enables you to replace long-term secrets with short-term ones, which helps to significantly reduce the risk of compromise.
 
-### What is AWS STS?
+### WAWS STSとは何か?
 - AWS Security Token Service (AWS STS)は、AWSリソースへのアクセスを制御できる一時的なセキュリティ認証情報を作成し、信頼できるユーザーに提供するために使用できるサービスです。
 - 一時的なセキュリティ認証情報は、IAM ユーザーが使用できる長期的なアクセスキーの認証情報とほぼ同じように機能します。
 - 一時的なセキュリティ認証情報は、その名の通り短期的なものです。数分から数時間持続するように設定できます。クレデンシャルの有効期限が切れると、AWSはそのクレデンシャルを認識しなくなり、そのクレデンシャルを使って行われたAPIリクエストからのアクセスを一切許可しなくなる。
 
-### What is OpsWorks?
+### OpsWorksとは何か?
 - AWS OpsWorksは、ChefとPuppetのマネージドインスタンスを提供する構成管理サービスだ。ChefとPuppetは、コードを使用してサーバーの構成を自動化できる自動化プラットフォームです。
 - OpsWorksを使用すると、ChefとPuppetを使用して、Amazon EC2インスタンスまたはオンプレミスのコンピュート環境全体でサーバーを構成、デプロイ、管理する方法を自動化できる。
 - OpsWorksには、AWS Opsworks for Chef Automate、AWS OpsWorks for Puppet Enterprise、AWS OpsWorks Stacksの3つの製品がある。
 - AWS OpsWorks Stacksでは、AWSとオンプレミス上のアプリケーションとサーバーを管理できる。OpsWorks Stacksを使用すると、ロードバランシング、データベース、アプリケーションサーバーなどの異なるレイヤーを含むスタックとしてアプリケーションをモデル化できます。
 - OpsWorks Stacksは、各レイヤーにAmazon EC2インスタンスをデプロイして構成したり、Amazon RDSデータベースなどの他のリソースに接続したりできるほど複雑です。
 
-### What is Elastic Transcoder?
+### Elastic Transcoderとは何か?
 - クラウド上のメディア・トランスコーダー。基本的には、メディアファイルを元のフォーマットから、電話、タブレット、PCなど、指定されたメディアフォーマットに変換するサービスです。
 - 様々なメディアタイプに対応しているため、出来上がりの品質は信頼できる。
 - Elastic Transcoderでは、トランスコード作業の分単位と、完成した作業の解像度ごとに料金を支払います。
 
-### What is AWS Directory Service?
+### AWS Directory Serviceとは何か?
 - AWS Directory Serviceは、Amazon Cloud DirectoryとMicrosoft Active Directory（AD）を他のAWSサービスで使用するための複数の方法を提供します。- ディレクトリは、ユーザー、グループ、デバイスに関する情報を格納し、管理者は情報やリソースへのアクセスを管理するために使用する。
 - AWS Directory Serviceは、既存のMicrosoft ADやLDAP（Lightweight Directory Access Protocol）対応のアプリケーションをクラウドで使用したい顧客に対して、複数のディレクトリの選択肢を提供する。また、ユーザー、グループ、デバイス、アクセスを管理するためのディレクトリを必要とする開発者にも、同様の選択肢を提供する。
 
-### What is IoT Core?
+### IoT Coreとは何か?
 - AWS IoT Coreは、コネクテッドデバイスがクラウドアプリケーションや他のデバイスと簡単かつ安全にやり取りできるようにするマネージドクラウドサービスです。
 - AWS IoT Coreは、さまざまな種類のコネクテッドデバイスやロケーション間でセキュアな通信とデータ処理を提供するため、IoTアプリケーションを簡単に構築できます。
 
-### What is AWS WorkSpaces?
+### AWS WorkSpacesとは何か?
 - Amazon WorkSpacesは、管理された安全なDaaS（Desktop-as-a-Service）ソリューションです。Amazon WorkSpacesを使用すると、WindowsまたはLinuxデスクトップをわずか数分でプロビジョニングし、世界中の従業員に数千台のデスクトップを提供できるように迅速に拡張できます。
 - Amazon WorkSpacesは、ハードウェアの在庫、OSのバージョンとパッチ、仮想デスクトップインフラ（VDI）の管理の複雑さを解消し、デスクトップ提供戦略の簡素化を支援します。
 - Amazon WorkSpacesを使用すれば、ユーザーは、いつでもどこでも、サポートされているデバイスからアクセスできる、高速で応答性の高いデスクトップを選択できます。
 
-### What is AWS Fargate?
+### AWS Fargateとは何か?
 - AWS Fargateはコンテナ用のサーバーレスコンピュートエンジンだ。
 - Fargateの起動タイプでは、バックエンドのインフラをプロビジョニング、管理することなく、コンテナ化されたアプリケーションを実行できる。タスク定義を登録するだけで、Fargateがコンテナを起動してくれる。
 - Amazon Elastic Container Service（ECS）とAmazon Elastic Kubernetes Service（EKS）の両方で動作する。
 - Fargateを使えば、アプリケーションの構築に集中することができます。サーバーのプロビジョニングと管理の必要性をなくし、アプリケーションごとにリソースを指定して支払うことができ、設計によるアプリケーションの分離によってセキュリティを向上させます。
 
-### What is Amazon Elastic Container Service?
+### Amazon Elastic Container Serviceとは何か?
 - Amazon Elastic Container Service（Amazon ECS）は、完全に管理されたコンテナ・オーケストレーション・サービスです。
 - Amazon ECSを利用することで、独自のクラスタ管理インフラをインストール、運用、スケールする必要がなくなります。シンプルなAPIコールで、コンテナ対応アプリケーションの起動と停止、クラスタの完全な状態の照会、セキュリティグループ、Elastic Load Balancing、EBSボリューム、IAMロールなどのおなじみの多くの機能へのアクセスが可能です。
 - Amazon ECSを使用して、リソースニーズと可用性要件に基づいてクラスタ全体にコンテナを配置するスケジュールを立てることができます。また、ビジネスやアプリケーション固有の要件を満たすために、独自のスケジューラやサードパーティのスケジューラを統合することもできます。
 - コンテナ用のサーバーレス・コンピュートであるAWS Fargateを使用してECSクラスタを実行することもできます。Fargateは、サーバーのプロビジョニングと管理の必要性を排除し、アプリケーションごとにリソースを指定して支払うことができ、設計によるアプリケーションの分離によってセキュリティを向上させます。
 
-### What is Amazon Elastic Kubernetes Service?
+### Amazon Elastic Kubernetes Serviceとは何か?
 - Amazon Elastic Kubernetes Service（Amazon EKS）はフルマネージドのKubernetesサービスです。EKSはアップストリームのKubernetesを実行し、Kubernetes準拠の認定を受けているため、コミュニティからのオープンソースツールのすべての利点を活用できます。また、コードをリファクタリングすることなく、標準的なKubernetesアプリケーションを簡単にEKSに移行できます。
 - Kubernetesは、コンテナ化されたアプリケーションを大規模にデプロイおよび管理できるオープンソースソフトウェアです。Kubernetesはコンテナを論理的なグループ分けして管理・発見し、EC2インスタンスのクラスタ上に起動します。Kubernetesを使用すると、マイクロサービス、バッチ処理ワーカー、サービスとしてのプラットフォーム（PaaS）などのコンテナ化されたアプリケーションを、オンプレミスとクラウドで同じツールセットを使用して実行できます。
 - Amazon EKSは、APIサーバーとバックエンドの永続化レイヤーを含むKubernetesのコントロールプレーンを、複数のAWSアベイラビリティゾーンにわたってプロビジョニングおよびスケーリングし、高可用性と耐障害性を実現します。Amazon EKSは、不健全なコントロールプレーンノードを自動的に検出して交換し、コントロールプレーンにパッチを適用します。
@@ -1739,7 +1739,7 @@ The following section includes services, features, and techniques that may appea
 - ブルー・グリーン・デプロイメントでは、ロールバックも迅速に行える。何か問題が発生したら、ルーターをブルー環境に戻す。
 - CloudFormationとCodeDeploy（AWS版のJenkins）はどちらもこのデプロイ手法をサポートしている。
 - 
-### What is Amazon Data Lifecycle Manager?
+### Amazon Data Lifecycle Managerとは何か?
 - Amazon Data Lifecycle Manager（Amazon DLM）を使用して、Amazon EBSボリュームをバックアップするために取得したスナップショットの作成、保持、および削除を自動化できます。
 - スナップショット管理を自動化すると、以下のことが可能になります：
   - 定期的なバックアップスケジュールを実施することで、貴重なデータを保護します。
@@ -1747,20 +1747,20 @@ The following section includes services, features, and techniques that may appea
   - 古いバックアップを削除することで、ストレージコストを削減します。
 - Amazon DLM を使用すると、EBS スナップショットの取得を覚えておく必要がなくなるため、エンジニアの認識負荷が軽減されます。
 
-### What is Route Origin Authorization?
+### Route Origin Authorizationとは何か?
 - オンプレミスのネットワークからパブリックIPv4アドレス範囲の一部または全部をAWSアカウントに持ってくることができる。アドレス範囲は引き続きお客様の所有ですが、AWSがインターネット上で広告します。アドレス範囲をAWSに持ってくると、アドレスプールとしてアカウントに表示されます。
 - その後、アドレスプールからElastic IPアドレスを作成し、EC2インスタンス、NATゲートウェイ、ネットワークロードバランサーなどのAWSリソースで使用することができます。これは「BYOIP（Bring Your Own IP Addresses）」とも呼ばれる。
 - あなただけがあなたのAWSアカウントにあなたのアドレス範囲をもたらすことができるようにするために、あなたはアドレス範囲を宣伝するためにアマゾンを承認し、あなたがアドレス範囲を所有していることを証明するものを提供する必要があります。
 - ROAの利点は、パートナーや顧客がIPアドレスのホワイトリストを変更することなく、既存のアプリケーションをAWSに移行できることだ。 
 
-### What is Amazon MQ?
+### Amazon MQとは何か?
 - Amazon MQはマネージド・メッセージ・ブローカー・サービスで、クラウド上でメッセージ・ブローカーのセットアップと運用を簡単に行うことができる。
 - このサービスは、サービスやアプリをオンプレミスからクラウドに移行する際に使用され、Amazon SQSとは異なる。
 - Amazon MQは、高可用性とメッセージの耐久性をサポートするためにAmazon EFSによってバックアップされた耐久性に最適化されたブローカーと、低レイテンシーと高スループットを必要とする大容量アプリケーションをサポートするためにAmazon EBSによってバックアップされたスループットに最適化されたブローカーをサポートしています。
 - アプリケーションのメッセージングコードを書き換える必要がないため、あらゆるメッセージブローカーからAmazon MQに簡単に移行できます。
 - Amazon MQは、オンプレミスであれクラウドであれ、メッセージブローカーを自社で管理しており、アプリケーションのメッセージングコードを書き換えることなく完全に管理されたクラウドサービスに移行したいと考えている企業のIT担当者、開発者、アーキテクトに適しています。
 
-### What is AWS Config?
+### AWS Configとは何か?
 - AWS Configは、AWSリソースの構成の評価、監査、および評価を可能にするサービスです。Configは、AWSリソースの構成を継続的に監視、記録し、記録された構成と目的の構成との評価を自動化することができます。
 - Configを使用すると、AWSリソース間の構成と関係の変更を確認し、リソースの構成履歴を詳細に調べ、社内ガイドラインで指定された構成に対する全体的なコンプライアンスを判断できます。これにより、コンプライアンス監査、セキュリティ分析、変更管理、および運用上のトラブルシューティングを簡素化できます。
 - AWS Configでは以下のことが可能です： -        
