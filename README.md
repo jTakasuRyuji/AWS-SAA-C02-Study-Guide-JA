@@ -169,7 +169,7 @@ You can cover a lot of ground by skimming over what you already know or what you
 
 ## Identity Access Management (IAM)
 
-### IAM Simplified:
+### IAM の概要:
 
 IAM offers a centralized hub of control within AWS and integrates with all other AWS Services. IAM comes with the ability to share access at various levels of permission and it supports the ability to use identity federation (the process of delegating authentication to a trusted external party like Facebook or Google) for temporary or limited access. IAM comes with MFA support and allows you to set up custom password rotation policy across your entire organization. 
 It is also PCI DSS compliant i.e. payment card industry data security standard. (passes government mandated credit card security regulations).
@@ -188,7 +188,7 @@ It is also PCI DSS compliant i.e. payment card industry data security standard. 
 
 IAM Policies are separated from the other entities above because they are not an IAM Identity. Instead, they are attached to IAM Identities so that the IAM Identity in question can perform its necessary function.
 
-### IAM Key Details:
+### IAM の詳細:
 
 - IAM is a global AWS services that is not limited by regions. Any user, group, role or policy is accessible globally.
 
@@ -224,68 +224,68 @@ IAM Policies are separated from the other entities above because they are not an
 
 ## Simple Storage Service (S3)
 
-### S3 Simplified:
-S3 provides developers and IT teams with secure, durable, and highly-scalable object storage. Object storage, as opposed to block storage, is a general term that refers to data composed of three things:
+### S3 の概要:
+S3は、開発者とITチームに、安全で耐久性があり、拡張性の高いオブジェクトストレージを提供する。オブジェクトストレージは、ブロックストレージとは対照的に、3つのもので構成されるデータを指す一般的な用語である：
 
-  1.) the data that you want to store
+  1.) 保存したいデータ
 
-  2.) an expandable amount of metadata
+  2.) 拡張可能な量のメタデータ
 
-  3.) a unique identifier so that the data can be retrieved 
+  3.) データを検索できる一意の識別子 
 
-This makes it a perfect candidate to host files or directories and a poor candidate to host databases or operating systems. The following table highlights key differences between object and block storage:
+このため、ファイルやディレクトリをホストするには最適で、データベースやオペレーティング・システムをホストするには不向きである。次の表は、オブジェクト・ストレージとブロック・ストレージの主な違いを示している：
 
 ![Screen Shot 2020-06-05 at 3 34 57 PM](https://user-images.githubusercontent.com/13093517/83915925-352c5780-a742-11ea-975b-53d4e5d07e7c.png)
 
 
-Data uploaded into S3 is spread across multiple files and facilities. The files uploaded into S3 have an upper-bound of 5TB per file and the number of files that can be uploaded is virtually limitless. S3 buckets, which contain all files, are named in a universal namespace so uniqueness is required. All successful uploads will return an HTTP 200 response.
+S3にアップロードされたデータは、複数のファイルや施設に分散される。S3にアップロードされるファイルの上限は1ファイルあたり5TBで、アップロード可能なファイル数は事実上無限である。すべてのファイルを格納するS3バケットはユニバーサルネームスペースで命名されるため、一意性が要求される。アップロードに成功すると、すべてHTTP 200レスポンスが返されます。
 
-### S3 Key Details:
-- Objects (regular files or directories) are stored in S3 with a key, value, version ID, and metadata. They can also contain torrents and sub resources for access control lists which are basically permissions for the object itself.
-- The data consistency model for S3 ensures immediate read access for new objects after the initial PUT requests. These new objects are introduced into AWS for the first time and thus do not need to be updated anywhere so they are available immediately.
-- The data consistency model for S3 also ensures immediate read access for PUTS and DELETES of already existing objects, <a href="https://aws.amazon.com/fr/about-aws/whats-new/2020/12/amazon-s3-now-delivers-strong-read-after-write-consistency-automatically-for-all-applications/">since Decembre 2020</a>.
-- Amazon guarantees 99.999999999% (or 11 9s) durability for all S3 storage classes except its Reduced Redundancy Storage class.
-- S3 comes with the following main features:
+### S3 の詳細:
+- オブジェクト (通常のファイルまたはディレクトリ) は、キー、値、バージョン ID、メタデータとともに S3 に保存されます。これらには、基本的にオブジェクト自体に対する権限であるアクセス制御リストのトレントやサブリソースも含めることができます。
+- S3 のデータ整合性モデルにより、最初の PUT リクエスト後の新しいオブジェクトへの即時読み取りアクセスが保証されます。これらの新しいオブジェクトは AWS に初めて導入されるため、どこでも更新する必要がないため、すぐに利用できるようになります。
+- S3 のデータ整合性モデルにより、既存のオブジェクトの PUTS および DELETES に対する即時読み取りアクセスも保証されます。<a href="https://aws.amazon.com/fr/about-aws/whats-new/2020/12/ amazon-s3-now-delivers-strong-read-after-write-consistency-automatically-for-all-applications/">2020 年 12 月以降</a>。
+- Amazon は、冗長性削減ストレージ クラスを除くすべての S3 ストレージ クラスに対して 99.999999999% (または 11 9 秒) の耐久性を保証します。
+- S3 には次の主な機能が搭載されています。
 
-  1.) tiered storage and pricing variability
+  1.) ストレージの階層化と価格変動
 
-  2.) lifecycle management to expire older content
+  2.) 古いコンテンツを失効させるライフサイクル管理
 
-  3.) versioning for version control
+  3.) バージョン管理のためのバージョニング
 
-  4.) encryption for privacy
+  4.) プライバシーのための暗号化
 
-  5.) MFA deletes to prevent accidental or malicious removal of content
+  5.) コンテンツの偶発的または悪意のある削除を防ぐためのMFA削除
 
-  6.) access control lists & bucket policies to secure the data
+  6.) データを保護するためのアクセス制御リストとバケットポリシー
 
-- S3 charges by:
+- S3の料金
 
-  1.) storage size
+  1.) ストレージサイズ
 
-  2.) number of requests
+  2.) リクエスト数
 
-  3.) storage management pricing (known as tiers)
+  3.) ストレージ管理価格（ティアと呼ばれる）
 
-  4.) data transfer pricing (objects leaving/entering AWS via the internet)
+  4.) データ転送価格（インターネット経由でAWSを出たり入ったりするオブジェクト）
 
-  5.) transfer acceleration (an optional speed increase for moving objects via Cloudfront)
+  5.) 転送アクセラレーション（Cloudfront経由でオブジェクトを移動する際のオプションの高速化）
 
-  6.) cross region replication (more HA than offered by default)
+  6.) クロスリージョンレプリケーション（デフォルトで提供されている以上のHA）
 
-- Bucket policies secure data at the bucket level while access control lists secure data at the more granular object level.
-- By default, all newly created buckets are private.
-- S3 can be configured to create access logs which can be shipped into another bucket in the current account or even a separate account all together. This makes it easy to monitor who accesses what inside S3.
-- There are 3 different ways to share S3 buckets across AWS accounts:
+- バケットポリシーはバケットレベルでデータを保護し、アクセスコントロールリストはより細かいオブジェクトレベルでデータを保護します。
+- デフォルトでは、新しく作成されたバケットは全てプライベートです。
+- S3はアクセスログを作成するように設定することができ、そのログは現在のアカウントにある別のバケット、あるいは別のアカウントに保存することができる。これにより、S3内で誰が何にアクセスしたかを簡単に監視できる。
+- AWSアカウント間でS3バケットを共有するには3つの異なる方法がある：
 
-  1.) For programmatic access only, use IAM & Bucket Policies to share entire buckets
+  1.) IAM & Bucket Policiesを使ってバケット全体を共有する。
 
-  2.) For programmatic access only, use ACLs & Bucket Policies to share objects
+  2.) プログラムアクセスのみで、ACLとBucket Policiesを使ってオブジェクトを共有する。
 
-  3.) For access via the console & the terminal, use cross-account IAM roles
+  3.) コンソールとターミナル経由のアクセスには、クロスアカウントIAMロールを使う
 
-- S3 is a great candidate for static website hosting. When you enable static website hosting for S3 you need both an index.html file and an error.html file. Static website hosting creates a website endpoint that can be accessed via the internet.
-- When you upload new files and have versioning enabled, they will not inherit the properties of the previous version. 
+- S3は静的ウェブサイトのホスティングに最適です。S3で静的ウェブサイトホスティングを有効にすると、index.htmlファイルとerror.htmlファイルの両方が必要になる。静的ウェブサイトホスティングは、インターネット経由でアクセスできるウェブサイトのエンドポイントを作成します。
+- 新しいファイルをアップロードし、バージョン管理を有効にすると、以前のバージョンのプロパティは継承されません。
 
 ### S3 Storage Classes:
 **S3 Standard** - 99.99% availability and 11 9s durability. Data in this class is stored redundantly across multiple devices in multiple facilities and is designed to withstand the failure of 2 concurrent data centers.
@@ -296,13 +296,13 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 
 **S3 Intelligent Tiering** - Uses built-in ML/AI to determine the most cost-effective storage class and then automatically moves your data to the appropriate tier. It does this without operational overhead or performance impact.
 
-**S3 Glacier** - low-cost storage class for data archiving. This class is for pure storage purposes where retrieval isn’t needed often at all. Retrieval times range from minutes to hours. There are differing retrieval methods depending on how acceptable the default retrieval times are for you:
+**S3 Glacier** - データ・アーカイブ用の低コストのストレージ・クラス。このクラスは、検索があまり必要とされない純粋な保存用である。検索時間は数分から数時間です。デフォルトの検索時間をどの程度許容できるかによって、検索方法が異なります：
 
-    Expedited: 1 - 5 minutes, but this option is the most expensive.
-    Standard: 3 - 5 hours to restore.
-    Bulk: 5 - 12 hours. This option has the lowest cost and is good for a large set of data.
+    迅速： 1～5分ですが、このオプションは最も高額です。
+    標準：復元に3～5時間かかります。
+    バルク：5～12時間。このオプションは最もコストが低く、大規模なデータセットに適しています。
 
-The Expedited duration listed above could possibly be longer during rare situations of unusually high demand across all of AWS. If it is absolutely critical to have quick access to your Glacier data under all circumstances, you must purchase *Provisioned Capacity*. Provisioned Capacity guarantees that Expedited retrievals always work within the time constraints of 1 to 5 minutes.
+上記のExpeditedの期間は、AWS全体で異常に需要が高い稀な状況では長くなる可能性があります。どのような状況においてもGlacierデータへの迅速なアクセスが絶対に必要な場合は、*Provisioned Capacity*を購入する必要があります。Provisioned Capacityは、Expedited検索が常に1～5分の時間制約内で動作することを保証します。
 
 **S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
 
@@ -362,57 +362,57 @@ The Amazon S3 notification feature enables you to receive and send notifications
 - <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html "> More information on how to ensure high performance in S3</a>
 
 ### S3 Server Access Logging:
-- Server access logging provides detailed records for the requests that are made to a bucket. Server access logs are useful for many applications. For example, access log information can be useful in security and access audits. It can also help you learn about your customer base and better understand your Amazon S3 bill. 
-- By default, logging is disabled. When logging is enabled, logs are saved to a bucket in the same AWS Region as the source bucket. 
-- Each access log record provides details about a single access request, such as the requester, bucket name, request time, request action, response status, and an error code, if relevant.
-- It works in the following way:
-   - S3 periodically collects access log records of the bucket you want to monitor
-   - S3 then consolidates those records into log files
-   - S3 finally uploads the log files to your secondary monitoring bucket as log objects
+- サーバアクセスログは、バケツへのリクエストの詳細な記録を提供します。サーバアクセスログは多くの用途に有用です。例えば、アクセスログ情報はセキュリティやアクセス監査に役立ちます。また、顧客ベースについて学び、Amazon S3の請求額をよりよく理解するのにも役立ちます。
+- デフォルトでは、ロギングは無効になっています。ロギングが有効な場合、ログはソースバケットと同じAWSリージョンのバケットに保存されます。
+- 各アクセスログレコードは、単一のアクセスリクエストに関する詳細、例えばリクエスト元、バケット名、リクエスト時間、リクエストアクション、レスポンスステータス、関連する場合はエラーコードを提供します。
+- 仕組みは以下の通り：
+   - S3は監視したいバケットのアクセスログレコードを定期的に収集します。
+   - S3はそれらのレコードをログファイルに統合します。
+   - S3は最終的にログファイルをログオブジェクトとしてセカンダリ監視バケットにアップロードします。
 
 ### S3 Multipart Upload:
-- Multipart upload allows you to upload a single object as a set of parts. Each part is a contiguous portion of the object's data. You can upload these object parts independently and in any order. 
-- Multipart uploads are recommended for files over 100 MB and is *the only way* to upload files over 5 GB. It achieves functionality by uploading your data in parallel to boost efficiency.
-- If transmission of any part fails, you can retransmit that part without affecting other parts. After all parts of your object are uploaded, Amazon S3 assembles these parts and creates the object.
-- Possible reasons for why you would want to use Multipart upload:
-  - Multipart upload delivers the ability to begin an upload before you know the final object size.
-  - Multipart upload delivers improved throughput.
-  - Multipart upload delivers the ability to pause and resume object uploads.
-  - Multipart upload delivers quick recovery from network issues.
-- You can use an AWS SDK to upload an object in parts. Alternatively, you can perform the same action via the AWS CLI.
-- You can also parallelize downloads from S3 using **byte-range fetches**. If there's a failure during the download, the failure is localized just to the specific byte range and not the whole object.
+- マルチパートアップロードでは、1つのオブジェクトをパーツのセットとしてアップロードできます。各部分はオブジェクトのデータの連続した部分です。これらのオブジェクト パーツは独立して、任意の順序でアップロードできます。
+- マルチパートアップロードは 100 MB を超えるファイルに推奨され、5 GB を超えるファイルをアップロードする唯一の方法です。マルチパートアップロードは、データを並行してアップロードすることで効率を高め、機能性を実現します。
+- いずれかの部分の送信が失敗しても、他の部分に影響を与えることなく、その部分を再送信できます。オブジェクトのすべての部分がアップロードされた後、Amazon S3はこれらの部分を組み立て、オブジェクトを作成します。
+- マルチパートアップロードを使いたい理由として考えられること：
+  - マルチパートアップロードは、最終的なオブジェクトサイズを知る前にアップロードを開始する能力を提供します。
+  - マルチパートアップロードはスループットを向上させます。
+  - マルチパートアップロードは、オブジェクトのアップロードを一時停止および再開する機能を提供します。
+  - マルチパートアップロードは、ネットワーク問題からの迅速な回復を実現します。
+- AWS SDKを使用して、オブジェクトを分割してアップロードできます。あるいは、AWS CLI経由で同じアクションを実行することもできます。
+- また、**バイトレンジフェッチ**を使用してS3からのダウンロードを並列化することもできます。ダウンロード中に障害が発生した場合、その障害はオブジェクト全体ではなく、特定のバイト範囲にのみ局所化されます。
 
 ### S3 Pre-signed URLs:
-- All S3 objects are private by default, however the object owner of a private bucket with private objects can optionally share those objects without having to change the permissions of the bucket to be public.
-- This is done by creating a pre-signed URL. Using your own security credentials, you can grant time-limited permission to download or view your private S3 objects.
-- When you create a pre-signed URL for your S3 object, you must do the following:
-  - Provide your security credentials.
-  - Specify a bucket.
-  - Specify an object key.
-  - Specify the HTTP method (GET to download the object).
-  - Specify the expiration date and time.
+- 全てのS3オブジェクトはデフォルトではプライベートであるが、プライベートオブジェクトを持つプライベートバケットのオブジェクトオーナーは、バケットのパーミッションをパブリックに変更することなく、オプションでそれらのオブジェクトを共有することができる。
+- これは、事前に署名されたURLを作成することによって行われる。自分のセキュリティ認証情報を使って、プライベートなS3オブジェクトのダウンロードや閲覧を期間限定で許可することができる。
+- S3オブジェクトの署名済みURLを作成する際には、以下のことを行う必要があります：
+  - セキュリティ認証情報を提供する。
+  - バケットを指定する。
+  - オブジェクトキーを指定する。
+  - HTTPメソッドを指定する（オブジェクトをダウンロードするにはGET）。
+  - 有効期限を指定する。
   
-- The pre-signed URLs are valid only for the specified duration and anyone who receives the pre-signed URL within that duration can then access the object.
-- The following diagram highlights how Pre-signed URLs work:
+- 署名済みURLは指定された期間だけ有効で、その期間内に署名済みURLを受け取った人は誰でもそのオブジェクトにアクセスできる。
+- 次の図は、事前署名付きURLがどのように機能するかを示しています：
 
 ![Screen Shot 2020-06-09 at 8 20 53 PM](https://user-images.githubusercontent.com/13093517/84213482-c6773300-aa8e-11ea-84a1-3c17e14197bc.png)
 
 ### S3 Select:
-- S3 Select is an Amazon S3 feature that is designed to pull out only the data you need from an object, which can dramatically improve the performance and reduce the cost of applications that need to access data in S3. 
-- Most applications have to retrieve the entire object and then filter out only the required data for further analysis. S3 Select enables applications to offload the heavy lifting of filtering and accessing data inside objects to the Amazon S3 service. 
-- As an example, let’s imagine you’re a developer at a large retailer and you need to analyze the weekly sales data from a single store, but the data for all 200 stores is saved in a new GZIP-ed CSV every day. 
-  - Without S3 Select, you would need to download, decompress and process the entire CSV to get the data you needed. 
-  - With S3 Select, you can use a simple SQL expression to return only the data from the store you’re interested in, instead of retrieving the entire object. 
-- By reducing the volume of data that has to be loaded and processed by your applications, S3 Select can improve the performance of most applications that frequently access data from S3 by up to 400% because you’re dealing with significantly less data.
-- You can also use S3 Select for Glacier.
+- S3セレクトは、オブジェクトから必要なデータだけを取り出すように設計されたAmazon S3の機能で、S3内のデータにアクセスする必要があるアプリケーションのパフォーマンスを劇的に向上させ、コストを削減することができる。
+- ほとんどのアプリケーションは、オブジェクト全体を取得し、さらに分析するために必要なデータのみをフィルタリングする必要があります。S3 Selectによって、アプリケーションはオブジェクト内のデータのフィルタリングとアクセスという重労働をAmazon S3サービスにオフロードすることができる。
+- 例として、あなたが大手小売企業の開発者で、1つの店舗の週間売上データを分析する必要があるが、200店舗すべてのデータが毎日新しいGZIP処理されたCSVに保存されているとします。
+  - S3 Selectがなければ、必要なデータを取得するために、CSV全体をダウンロード、解凍、処理する必要がある。
+  - S3 Selectを使用すると、オブジェクト全体を取得する代わりに、単純なSQL式を使用して、興味のあるストアのデータのみを返すことができます。
+- アプリケーションで読み込んで処理しなければならないデータ量を減らすことで、S3 SelectはS3から頻繁にデータにアクセスするほとんどのアプリケーションのパフォーマンスを最大400%向上させることができる。
+- また、GlacierでもS3 Selectを使用できる。
 
 
 ## CloudFront
 
-### CloudFront Simplified:
+### CloudFront の概要:
 The AWS CDN service is called CloudFront. It serves up cached content and assets for the increased global performance of your application. The main components of CloudFront are the edge locations (cache endpoints), the origin (original source of truth to be cached such as an EC2 instance, an S3 bucket, an Elastic Load Balancer or a Route 53 config), and the distribution (the arrangement of edge locations from the origin or basically the network itself). <a href="https://aws.amazon.com/cloudfront/features/">More info on CloudFront's features</a>
 
-### CloudFront Key Details:
+### CloudFront の詳細:
 - When content is cached, it is done for a certain time limit called the Time To Live, or TTL, which is always in seconds
 - If needed, CloudFront can serve up entire websites including dynamic, static, streaming and interactive content. 
 - Requests are always routed and cached in the nearest edge location for the user, thus propagating the CDN nodes and guaranteeing best performance for future requests.
@@ -442,16 +442,16 @@ The AWS CDN service is called CloudFront. It serves up cached content and assets
 
 ## Snowball
 
-### Snowball Simplified:
-Snowball is a giant physical disk that is used for migrating high quantities of data into AWS. It is a peta-byte scale data transport solution. Using a large disk like Snowball helps to circumvent common large scale data transfer problems such as high network costs, long transfer times, and security concerns. Snowballs are extremely secure by design and once the data transfer is complete, the snowballs are wiped clean of your data.
+### Snowball の概要:
+Snowballは、大量のデータをAWSに移行するための巨大な物理ディスクである。ペタバイトスケールのデータ転送ソリューションだ。Snowballのような大きなディスクを使うことで、ネットワークコストの高さ、転送時間の長さ、セキュリティ上の懸念など、一般的な大規模データ転送の問題を回避することができる。スノーボールは設計上非常に安全で、データ転送が完了すると、スノーボールからデータが消去されます。
 
-### Snowball Key Details:
-- Snowball is a strong choice for a data transfer job if you need a secure and quick data transfer ranging in the terabytes to many petabytes into AWS. 
-- Snowball can also be the right choice if you don’t want to make expensive upgrades to your existing network infrastructure, if you frequently experience large backlogs of data, if you're located in a physically isolated environment, or if you're in an area where high-speed internet connections are not available or cost-prohibitive.
-- As a rule of thumb, if it takes more than one week to upload your data to AWS using the spare capacity of your existing internet connection, then you should consider using Snowball. 
-- For example, if you have a 100 Mb connection that you can solely dedicate to transferring your data and you need to transfer 100 TB of data in total, it will take more than 100 days for the transfer to complete over that connection. You can make the same transfer in about a week by using multiple Snowballs.
-- Here is a reference for when Snowball should be considered based on the number of days it would take to make the same transfer over an internet connection:
-
+### Snowball の主な詳細：
+- テラバイトから何ペタバイトものデータをAWSに安全かつ迅速に転送する必要がある場合、Snowballはデータ転送の強力な選択肢となります。
+- また、既存のネットワーク・インフラに高価なアップグレードをしたくない場合、データの大きなバックログが頻繁に発生する場合、物理的に隔離された環境にある場合、高速インターネット接続が利用できない、またはコスト的に不可能な地域にある場合にも、Snowballは適切な選択肢となります。
+- 経験則として、既存のインターネット接続の空き容量を使用してAWSにデータをアップロードするのに1週間以上かかる場合は、Snowballの使用を検討する必要があります。
+- 例えば、データ転送専用に使える100Mbの接続があり、合計100TBのデータを転送する必要がある場合、その接続で転送が完了するまで100日以上かかることになる。複数のSnowballを使用すれば、同じ転送を約1週間で行うことができます。
+- 以下は、インターネット接続で同じ転送を行うのにかかる日数に基づいて、Snowballを検討すべき場合の参考例です：
+- 
 ![Screen Shot 2020-06-07 at 10 53 22 PM](https://user-images.githubusercontent.com/13093517/83988618-c271d680-a911-11ea-9594-a82f690a786b.png)
 
 ### Snowball Edge and Snowmobile:
@@ -460,11 +460,11 @@ Snowball is a giant physical disk that is used for migrating high quantities of 
 
 ## Storage Gateway
 
-### Storage Gateway Simplified:
+### Storage Gateway の概要:
 Storage Gateway is a service that connects on-premise environments with cloud-based storage in order to seamlessly and securely integrate an on-prem application with a cloud storage backend. Storage Gateway comes in three flavors: File Gateway, Volume Gateway and Tape Gateway.
 
 
-### Storage Gateway Key Details:
+### Storage Gateway の詳細:
 - The Storage Gateway service can either be a physical device or a VM image downloaded onto a host in an on-prem data center. It acts as a bridge to send or receive data from AWS.
 - Storage Gateway can sit on top of VMWare's ESXi hypervisor for Linux machines and Microsoft’s Hyper-V hypervisor for Windows machines.
 - The three types of Storage Gateways are below:
@@ -487,10 +487,10 @@ Storage Gateway is a service that connects on-premise environments with cloud-ba
 
 ## Elastic Compute Cloud (EC2)
 
-### EC2 Simplified:
+### EC2 の概要:
 EC2 spins up resizable server instances that can scale up and down quickly. An instance is a virtual server in the cloud. With Amazon EC2, you can set up and configure the operating system and applications that run on your instance. Its configuration at launch is a live copy of the *Amazon Machine Image (AMI)* that you specify when you launched the instance. EC2 has an extremely reduced time frame for provisioning and booting new instances and EC2 ensures that you pay as you go, pay for what you use, pay less as you use more, and pay even less when you reserve capacity. When your EC2 instance is running, you are charged on CPU, memory, storage, and networking. When it is stopped, you are only charged for EBS storage.
 
-### EC2 Key Details:
+### EC2 の詳細:
 - You can launch different types of instances from a single AMI. An instance type essentially determines the hardware of the host computer used for your instance. Each instance type offers different compute and memory capabilities. You should select an instance type based on the amount of memory and computing power that you need for the application or software that you plan to run on top of the instance.   
 - You can launch multiple instances of an AMI, as shown in the following figure:
 
@@ -560,10 +560,10 @@ The following table highlights the many instance states that a VM can be in at a
 
 ## Elastic Block Store (EBS)
 
-### EBS Simplified:
+### EBS の概要:
 An Amazon EBS volume is a durable, block-level storage device that you can attach to a single EC2 instance. You can think of EBS as a cloud-based virtual hard disk. You can use EBS volumes as primary storage for data that requires frequent updates, such as the system drive for an instance or storage for a database application. You can also use them for throughput-intensive applications that perform continuous disk scans.
 
-### EBS Key Details:
+### EBS の詳細:
 - EBS volumes persist independently from the running life of an EC2 instance.
 - Each EBS volume is automatically replicated within its Availability Zone to protect from both component failure and disaster recovery (similar to Standard S3).
 - There are five different types of EBS Storage:
@@ -640,10 +640,10 @@ An Amazon EBS volume is a durable, block-level storage device that you can attac
 
 ## Elastic Network Interfaces (ENI)
 
-### ENI Simplified:
+### ENI の概要:
 An elastic network interface is a networking component that represents a virtual network card. When you provision a new instance, there will be an ENI attached automatically and you can create and configure additional network interfaces if desired. When you move a network interface from one instance to another, network traffic is redirected to the new instance. 
 
-### ENI Key Details:
+### ENI の詳細:
 - ENI is used mainly for low-budget, high-availability network solutions
 - However, if you suspect you need high network throughput then you can use Enhanced Networking ENI.
 - Enhanced Networking ENI uses single root I/O virtualization to provide high-performance networking capabilities on supported instance types. SR-IOV provides higher I/O and lower throughput and it ensures higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies. SR-IOV does this by dedicating the interface to a single instance and effectively bypassing parts of the Hypervisor which allows for better performance.
@@ -660,10 +660,10 @@ An elastic network interface is a networking component that represents a virtual
 
 ## Security Groups
 
-### Security Groups Simplified:
+### Security Groups の概要:
 Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2. They act as a virtual firewall for your instances to control inbound and outbound traffic. When you launch an instance in a VPC, you can assign up to five security groups to the instance and security groups act at the instance level, not the subnet level. 
 
-### Security Groups Key Details:
+### Security Groups の詳細:
 - Security groups control inbound and outbound traffic for your instances (they act as a Firewall for EC2 Instances) while NACLs control inbound and outbound traffic for your subnets (they act as a Firewall for Subnets). Security Groups usually control the list of ports that are allowed to be used by your EC2 instances and the NACLs control which network or list of IP addresses can connect to your whole VPC.
 - Every time you make a change to a security group, that change occurs immediately
 - Whenever you create an inbound rule, an outbound rule is created immediately. This is because Security Groups are *stateful*. This means that when you create an ingress rule for a security group, a corresponding egress rule is created to match it. This is in contrast with NACLs which are *stateless* and require manual intervention for creating both inbound and outbound rules.
@@ -679,10 +679,10 @@ Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2. They
 
 ## Web Application Firewall (WAF)
 
-### WAF Simplified:
+### WAF の概要:
 AWS WAF is a web application that lets you allow or block the HTTP(s) requests that are bound for CloudFront, API Gateway, Application Load Balancers, EC2, and other Layer 7 entry points into your AWS environment. AWS WAF gives you control over how traffic reaches your applications by enabling you to create security rules that block common attack patterns, such as SQL injection or cross-site scripting, and rules that filter out specific traffic patterns that you can define. WAF's default rule-set addresses issues like the OWASP Top 10 security risks and is regularly updated whenever new vulnerabilities are discovered.
 
-### WAF Key Details:
+### WAF の詳細:
 - As mentioned above, WAF operates as a Layer 7 firewall. This grants it the ability to monitor granular web-based conditions like URL query string parameters. This level of detail helps to detect both foul play and honest issues with the requests getting passed onto your AWS environment.
 - With WAF, you can set conditions such as which IP addresses are allowed to make what kind of requests or access what kind of content.
 - Based off of these conditions, the corresponding endpoint will either allow the request by serving the requested content or return an HTTP 403 Forbidden status.
@@ -705,10 +705,10 @@ AWS WAF is a web application that lets you allow or block the HTTP(s) requests t
 
 ## CloudWatch
 
-### CloudWatch Simplified:
-Amazon CloudWatch is a monitoring and observability service. It provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health.
+### CloudWatch の概要:
+Amazon CloudWatchはモニタリングと監視のサービスです。アプリケーションを監視し、システム全体のパフォーマンス変化に対応し、リソース利用を最適化し、運用の健全性を統一的に把握するためのデータと実用的な洞察を提供します。
 
-### CloudWatch Key Details:
+### CloudWatch の詳細:
 - CloudWatch collects monitoring and operational data in the form of logs, metrics, and events.
 - You can use CloudWatch to detect anomalous behavior in your environments, set alarms, visualize logs and metrics side by side, take automated actions, troubleshoot issues, and discover insights to keep your applications
 running smoothly.
@@ -763,10 +763,10 @@ Within the storage and content delivery domains, CloudWatch can inform you about
 
 ## CloudTrail
 
-### CloudTrail Simplified:
-AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. With it, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure. CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, API calls, and other AWS services. It is a regional service, but you can configure CloudTrail to collect trails in all regions.
+### CloudTrail の概要:
+AWS CloudTrailは、AWSアカウントのガバナンス、コンプライアンス、運用監査、リスク監査を可能にするサービスです。CloudTrailを使用することで、AWSインフラストラクチャ全体のアクションに関連するアカウントのアクティビティをログに記録し、継続的に監視し、保持することができます。CloudTrailは、AWS Management Console、AWS SDK、コマンドラインツール、APIコール、その他のAWSサービスを通じて行われたアクションを含む、AWSアカウントのアクティビティのイベント履歴を提供します。これはリージョナルサービスですが、すべてのリージョンで証跡を収集するようにCloudTrailを構成することができます。
 
-### CloudTrail Key Details:
+### CloudTrail の詳細:
 - CloudTrail Events logs API calls or activities. 
 - CloudTrail Events stores the last 90 days of events in its Event History. This is enabled by default and is no additional cost.
 - This event history simplifies security analysis, resource change tracking, and troubleshooting.
@@ -786,10 +786,10 @@ AWS CloudTrail is a service that enables governance, compliance, operational aud
 
 ## Elastic File System (EFS)
 
-### EFS Simplified:
-EFS provides a simple and fully managed elastic NFS file system for use within AWS. EFS automatically and instantly scales your file system storage capacity up or down as you add or remove files without disrupting your application.
+### EFS の概要:
+EFSは、AWS内で使用するためのシンプルで完全に管理されたエラスティックNFSファイルシステムを提供します。EFSは、アプリケーションを中断することなく、ファイルの追加や削除に応じてファイルシステムのストレージ容量を自動的かつ瞬時に増減します。
 
-### EFS Key Details:
+### EFS の詳細:
 - In EFS, storage capacity is elastic (grows and shrinks automatically) and its size changes based on adding or removing files.
 - While EBS mounts one EBS volume to one instance, you can attach one EFS volume across multiple EC2 instances.
 - The EC2 instances communicate to the remote file system using the NFSv4 protocol. This makes it required to open up the NFS port for our security group (EC2 firewall rules) to allow inbound traffic on that port.
@@ -801,10 +801,10 @@ EFS provides a simple and fully managed elastic NFS file system for use within A
 
 ## Amazon FSx for Windows
 
-### Amazon FSx for Windows Simplified:
-Amazon FSx for Windows File Server provides a fully managed native Microsoft File System.
+### Amazon FSx for Windows の概要:
+Amazon FSx for Windows File Serverは、完全に管理されたネイティブのMicrosoft File Systemを提供します。
 
-### Amazon FSx for Windows Key Details:
+### Amazon FSx for Windows の詳細:
 - With FSx for Windows, you can easily move your Windows-based applications that require file storage in AWS.
 - It is built on Windows Server and exists solely for Microsoft-based applications so if you need SMB-based file storage then choose FSx.
 - FSx for Windows also permits connectivity between on-premise servers and AWS so those same on-premise servers can make use of Amazon FSx too.
@@ -819,20 +819,20 @@ Amazon FSx for Windows File Server provides a fully managed native Microsoft Fil
 
 ## Amazon FSx for Lustre
 
-### Amazon FSx for Lustre Simplified:
-Amazon FSx for Lustre makes it easy and cost effective to launch and run the open source Lustre file system for high-performance computing applications. With FSx for Lustre, you can launch and run a file system that can process massive data sets at up to hundreds of gigabytes per second of throughput, millions of IOPS, and sub-millisecond latencies.
+### Amazon FSx for Lustre の概要:
+Amazon FSx for Lustreは、ハイパフォーマンス・コンピューティング・アプリケーション向けにオープンソースのLustreファイルシステムを簡単かつコスト効率よく立ち上げ、実行できるようにします。FSx for Lustreを使用すると、最大で毎秒数百ギガバイトのスループット、数百万のIOPS、サブミリ秒のレイテンシで巨大なデータセットを処理できるファイルシステムを立ち上げて実行できます。
 
-### Amazon FSx for Lustre Key Details:
+### Amazon FSx for Lustre の詳細:
 - FSx for Lustre is compatible with the most popular Linux-based AMIs, including Amazon Linux, Amazon Linux 2, Red Hat Enterprise Linux (RHEL), CentOS, SUSE Linux and Ubuntu.
 - Since the Lustre file system is designed for high-performance computing workloads that typically run on compute clusters, choose EFS for normal Linux file system if your requirements don't match this use case.
 - FSx Lustre has the ability to store and retrieve data directly on S3 on its own.
 
 ## Relational Database Service (RDS)
 
-### RDS Simplified:
-RDS is a managed service that makes it easy to set up, operate, and scale a relational database in AWS. It provides cost-efficient and resizable capacity while automating or outsourcing time-consuming administration tasks such as hardware provisioning, database setup, patching and backups.
+### RDS の概要:
+RDSは、AWSにおけるリレーショナルデータベースのセットアップ、運用、スケーリングを容易にするマネージドサービスです。ハードウェアのプロビジョニング、データベースのセットアップ、パッチ適用、バックアップなど、時間のかかる管理作業を自動化またはアウトソーシングしながら、コスト効率に優れたサイズ変更可能なキャパシティを提供します。
 
-### RDS Key Details:
+### RDS の詳細:
 - RDS comes in six different flavors:
   - SQL Server
   - Oracle
@@ -902,10 +902,10 @@ DB instances that are encrypted can't be modified to disable encryption.
 
 ## Aurora
 
-### Aurora Simplified:
-Aurora is the AWS flagship DB known to combine the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases. It is a MySQL/PostgreSQL-compatible RDBMS that provides the security, availability, and reliability of commercial databases at 1/10th the cost of competitors. It is far more effective as an AWS database due to the 5x and 3x performance multipliers for MySQL and PostgreSQL respectively.
+### Aurora の概要:
+AuroraはAWSのフラッグシップDBであり、従来のエンタープライズデータベースのパフォーマンスと可用性、オープンソースデータベースのシンプルさと費用対効果を兼ね備えていることで知られている。MySQL/PostgreSQL互換のRDBMSであり、商用データベースのセキュリティ、可用性、信頼性を競合他社の1/10のコストで提供する。MySQLは5倍、PostgreSQLは3倍のパフォーマンス倍率があるため、AWSデータベースとしてはるかに効果的です。
 
-### Aurora Key Details:
+### Aurora の詳細:
 - In case of an infrastructure failure, Aurora performs an automatic failover to a replica of its own.
 - Amazon Aurora typically involves a cluster of DB instances instead of a single instance. Each connection is handled by a specific DB instance. When you connect to an Aurora cluster, the host name and port that you specify point to an intermediate handler called an endpoint. Aurora uses the endpoint mechanism to abstract these connections. Thus, you don't have to hard code all the host names or write your own logic for load-balancing and rerouting connections when some DB instances aren't available.
 - By default, there are 2 copies in a minimum of 3 availability zones for 6 total copies of all of your Aurora data. This makes it possible for it to handle the potential loss of up to 2 copies of your data without impacting write availability and up to 3 copies of your data without impacting read availability.
@@ -941,10 +941,10 @@ Aurora is the AWS flagship DB known to combine the performance and availability 
 
 ## DynamoDB
 
-### DynamoDB Simplified:
-Amazon DynamoDB is a key-value and document database that delivers single-digit millisecond performance at any scale. It's a fully managed, multiregion, multimaster, durable non-SQL database. It comes with built-in security, backup and restore, and in-memory caching for internet-scale applications.
+### DynamoDB の概要:
+Amazon DynamoDBは、あらゆるスケールで1桁ミリ秒のパフォーマンスを実現するキーバリューおよびドキュメントデータベースです。完全に管理され、マルチリージョン、マルチマスター、耐久性のある非SQLデータベースです。セキュリティ、バックアップとリストア、インターネットスケールのアプリケーションのためのインメモリキャッシングが組み込まれています。
 
-### DynamoDB Key Details:
+### DynamoDB の詳細:
 - The main components of DynamoDB are:
   - a collection which serves as the foundational table
   - a document which is equivalent to a row in a SQL database
@@ -990,10 +990,10 @@ Amazon DynamoDB is a key-value and document database that delivers single-digit 
 
 ## Redshift
 
-### Redshift Simplified:
- Amazon Redshift is a fully managed, petabyte-scale data warehouse service in the cloud. The Amazon Redshift service manages all of the work of setting up, operating, and scaling a data warehouse. These tasks include provisioning capacity, monitoring and backing up the cluster, and applying patches and upgrades to the Amazon Redshift engine.
+### Redshift の概要:
+ Amazon Redshiftは、フルマネージドでペタバイト規模のデータウェアハウスをクラウドで提供するサービスです。Amazon Redshiftサービスは、データウェアハウスのセットアップ、運用、スケーリングのすべての作業を管理します。これらの作業には、容量のプロビジョニング、クラスタの監視とバックアップ、Amazon Redshiftエンジンへのパッチとアップグレードの適用が含まれます。
 
-### Redshift Key Details:
+### Redshift の詳細:
 -  An Amazon Redshift cluster is a set of nodes which consists of a leader node and one or more compute nodes. The type and number of compute nodes that you need depends on the size of your data, the number of queries you will execute, and the query execution performance that you need. 
 - Redshift is used for business intelligence and pulls in very large and complex datasets to perform complex queries in order to gather insights from the data.
 - It fits the use case of Online Analytical Processing (OLAP). Redshift is a powerful technology for data discovery including capabilities for almost limitless report viewing, complex analytical calculations, and predictive “what if” scenario (budget, forecast, etc.) planning.
@@ -1030,10 +1030,10 @@ Amazon DynamoDB is a key-value and document database that delivers single-digit 
   
 ## ElastiCache
 
-### ElastiCache Simplified:
-The ElastiCache service makes it easy to deploy, operate, and scale an in-memory cache in the cloud. It helps you boost the performance of your existing databases by retrieving data from high throughput and low latency in-memory data stores.
+### ElastiCache の概要:
+ElastiCacheサービスは、クラウド上のインメモリキャッシュの導入、運用、拡張を容易にします。高スループットかつ低レイテンシのインメモリデータストアからデータを取得することで、既存のデータベースのパフォーマンスを高めることができます。
 
-### ElastiCache Key Details:
+### ElastiCache の詳細:
 - The service is great for improving the performance of web applications by allowing you to receive information locally instead of relying solely on relatively distant DBs.
 - Amazon ElastiCache offers fully managed Redis and Memcached for the most demanding applications that require sub-millisecond response times.
 - For data that doesn’t change frequently and is often asked for, it makes a lot of sense to cache said data rather than querying it from the database.
@@ -1047,10 +1047,10 @@ The ElastiCache service makes it easy to deploy, operate, and scale an in-memory
 
 ## Route53
 
-### Route53 Simplified:
-Amazon Route 53 is a highly available and scalable Domain Name System (DNS) service. You can use Route 53 to perform three main functions in any combination: domain registration, DNS routing, and health checking.
+### Route53 の概要:
+Amazon Route 53は、可用性と拡張性の高いドメインネームシステム（DNS）サービスです。Route 53を使用して、3つの主な機能（ドメイン登録、DNSルーティング、ヘルスチェック）を自由に組み合わせて実行できます。
 
-### Route53 Key Details:
+### Route53 の詳細:
 - DNS is used to map human-readable domain names into an internet protocol address similarly to how phone books map company names with phone numbers.
 - AWS has its own domain registrar.
 - When you buy a domain name, every DNS address starts with an SOA (Start of Authority) record. The SOA record stores information about the name of the server that kicked off the transfer of ownership, the administrator who will now use the domain, the current metadata available, and the default number of seconds or TTL. 
@@ -1092,10 +1092,10 @@ Amazon Route 53 is a highly available and scalable Domain Name System (DNS) serv
 
 ## Elastic Load Balancers (ELB)
 
-### ELB Simplified:
-Elastic Load Balancing automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, Docker containers, IP addresses, and Lambda functions. It can handle the varying load of your application traffic in a single Availability Zone or across multiple Availability Zones. Elastic Load Balancing offers three types of load balancers that all feature the high availability, automatic scaling, and robust security necessary to make your applications fault tolerant.
+### ELB の概要:
+Elastic Load Balancingは、Amazon EC2インスタンス、Dockerコンテナ、IPアドレス、Lambda関数など、複数のターゲットに受信するアプリケーショントラフィックを自動的に分散します。単一のアベイラビリティ・ゾーン、または複数のアベイラビリティ・ゾーンにまたがるアプリケーション・トラフィックのさまざまな負荷に対応できます。Elastic Load Balancingは3種類のロードバランサーを提供しており、いずれもアプリケーションのフォールトトレラントに必要な高可用性、自動スケーリング、堅牢なセキュリティを備えています。
 
-### ELB Key Details:
+### ELB の詳細:
 - Load balancers can be internet facing or application internal.
 - To route domain traffic to an ELB load balancer, use Amazon Route 53 to create an Alias record that points to your load balancer. An Alias record is preferable over a CName, but both can work.
 - ELBs do not have predefined IPv4 addresses; you must resolve them with DNS instead. Your load balancer will never have its own IP by default, but you can create a static IP for a network load balancer because network LBs are for high performance purposes.
@@ -1143,10 +1143,10 @@ For example, with Path Patterns you can route general requests to one target gro
 
 ## Auto Scaling
 
-### Auto Scaling Simplified:
-AWS Auto Scaling lets you build scaling plans that automate how groups of different resources respond to changes in demand. You can optimize availability, costs, or a balance of both. AWS Auto Scaling automatically creates all of the scaling policies and sets targets for you based on your preference. 
+### Auto Scaling の概要:
+AWS Auto Scalingは、異なるリソースのグループが需要の変化にどのように対応するかを自動化するスケーリングプランを構築できます。可用性、コスト、またはその両方のバランスを最適化できます。AWS Auto Scalingは、すべてのスケーリングポリシーを自動的に作成し、お客様の好みに基づいてターゲットを設定します。
 
-### Auto Scaling Key Details:
+### Auto Scaling の詳細:
 - Auto Scaling is a major benefit from the cloud's economies of scale so if you ever have a requirement for scaling, automatically think of using the Auto Scaling service. 
 - Auto Scaling has three components:
   - **Groups**: These are logical components. A webserver group of EC2 instances, a database group of RDS instances, etc.
@@ -1189,10 +1189,10 @@ AWS Auto Scaling lets you build scaling plans that automate how groups of differ
 
 ## Virtual Private Cloud (VPC)
 
-### VPC Simplified:
-VPC lets you provision a logically isolated section of the AWS cloud where you can launch services and systems within a virtual network that you define. By having the option of selecting which AWS resources are public facing and which are not, VPC provides much more granular control over security.
+### VPC の概要:
+VPCを使用すると、AWSクラウドの論理的に隔離されたセクションをプロビジョニングし、定義した仮想ネットワーク内でサービスやシステムを起動することができます。どのAWSリソースをパブリックにし、どのリソースをパブリックにしないかを選択するオプションがあることで、VPCはセキュリティに対してよりきめ細かいコントロールを提供します。
 
-### VPC Key Details:
+### VPC の詳細:
 - You can think of VPC as your own virtual data center in the cloud. You have complete control of your own network; including the IP range, the creation of sub-networks (subnets), the configuration of route tables and the network gateways used.
 - You can then launch EC2 instances into a subnet of your choosing, select the IPs to be available for the instances, assign security groups for them, and create Network Access Control Lists (NACLs) for the subnets themselves as additional protection.
 - This customization gives you much more control to specify and personalize your infrastructure setup. For example, you can have one public-facing subnet for your web servers to receive HTTP traffic and then a different private-facing subnet for your database server where internet access is forbidden.
@@ -1404,10 +1404,10 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 
 ## Simple Queuing Service (SQS)
 
-### SQS Simplified:
- SQS is a web-based service that gives you access to a message queue that can be used to store messages while waiting for another service to process them. It helps in the decoupling of systems and the horizontal scaling of AWS resources.
+### SQS の概要:
+ SQSはウェブベースのサービスであり、メッセージキューにアクセスすることができる。システムのデカップリングやAWSリソースの水平スケーリングに役立つ。
 
-### SQS Key Details:
+### SQS の詳細:
 - The point behind SQS is to decouple work across systems. This way, downstream services in a system can perform work when they are ready to rather than when upstream services feed them data.
 - In a hypothetical AWS environment running without SQS, *Application A* would pass *Application B* data regardless if Application B was ready to receive the info. With SQS however, there is an intermediary step where the data is stored temporarily in a buffer. It waits there until Application B pulls the temporarily stored data. SQS is not a push-based service so it is necessary for SQS to work in tandem with another service that queries it for information.
 - There are two types of SQS queues; **standard** and **FIFO**. Standard queues may be received out of order based on message size or however else the SQS queues decide to optimize. FIFO queues guarantees that the order of messages that went into the queue is the same as the order of messages that leave it.
@@ -1429,10 +1429,10 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 
 ## Simple Workflow Service (SWF)
 
-### SWF Simplified:
-SWF is a web service that makes it easy to coordinate work across distributed application components. SWF has a range of use cases including media processing, web app backend, business process workflows, and analytical pipelines.
+### SWF の概要:
+SWFは、分散したアプリケーション・コンポーネント間の作業を簡単に調整できるウェブ・サービスだ。SWFには、メディア処理、ウェブアプリのバックエンド、ビジネスプロセスのワークフロー、分析パイプラインなど、さまざまな使用例がある。
 
-### SWF Key Details:
+### SWF の詳細:
 - SWF is a way of coordinating tasks between application and people. It is a service that combines digital and human-oriented workflows.
 - An example of a human-oriented workflow is the process in which Amazon warehouse workers find and ship your item as part of your Amazon order.
 - SWF provides a task-oriented API and ensures a task is assigned only once and is never duplicated. Using Amazon warehouse workers as an example again, this would make sense. Amazon wouldn’t want to send you the same item twice as they'd lose money.
@@ -1444,10 +1444,10 @@ SWF is a web service that makes it easy to coordinate work across distributed ap
 
 ## Simple Notification Service (SNS)
 
-### SNS Simplified:
-Simple Notification Service is a pushed-based messaging service that provides a highly scalable, flexible, and cost-effective method to publish a custom messages to subscribers who wish to be informed about a certain topic.
+### SNS の概要:
+Simple Notification Serviceはプッシュ型のメッセージングサービスで、特定のトピックに関する情報を希望する購読者にカスタムメッセージを発行するための、拡張性、柔軟性、コスト効率の高い方法を提供します。
 
-### SNS Key Details:
+### SNS の詳細:
 - SNS is mainly used to send alarms or alerts.
 - SNS provides topics for high-throughput, push-based, many-to-many messaging. 
 - Using Amazon SNS topics, your publisher systems can fan out messages to a large number of subscriber endpoints for parallel processing, including Amazon SQS queues, AWS Lambda functions, and HTTP/S webhooks. Additionally, SNS can be used to fan out notifications to end users using mobile push, SMS, and email. 
@@ -1460,10 +1460,10 @@ Simple Notification Service is a pushed-based messaging service that provides a 
 
 ## Kinesis 
 
-### Kinesis Simplified:
+### Kinesis の概要:
 Amazon Kinesis makes it easy to collect, process, and analyze real-time, streaming data so you can get timely insights and react quickly to new information. With Amazon Kinesis, you can ingest real-time data such as video, audio, application logs, website clickstreams, and IoT telemetry data for machine learning, analytics, and other applications. Amazon Kinesis enables you to process and analyze data as it arrives and respond instantly instead of having to wait until all your data is collected before the processing can begin.
 
-### Kinesis Key Details:
+### Kinesis の詳細:
 - Amazon Kinesis makes it easy to load and analyze the large volumes of data entering AWS.
 - Kinesis is used for processing real-time data streams (data that is generated continuously) from devices constantly sending data into AWS so that said data can be collected and analyzed.
 - It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security.
@@ -1494,10 +1494,10 @@ Amazon Kinesis makes it easy to collect, process, and analyze real-time, streami
 
 ## Lambda
 
-### Lambda Simplified:
+### Lambda の概要:
 AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume. With Lambda, you can run code for virtually any type of application or backend service - all with zero administration. You upload your code and Lambda takes care of everything required to run and scale your code with high availability. You can set up your code to be automatically triggered from other AWS services or be called directly from any web or mobile app.
 
-### Lambda Key Details:
+### Lambda の詳細:
 - Lambda is a compute service where you upload your code as a function and AWS provisions the necessary details underneath the function so that the function executes successfully. 
 - AWS Lambda is the ultimate abstraction layer. You only worry about code, AWS does everything else.
 - Lambda supports Go, Python, C#, PowerShell, Node.js, and Java
@@ -1533,10 +1533,10 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
 
 ## API Gateway
 
-### API Gateway Simplified:
+### API Gateway の概要:
 API Gateway is a fully managed service for developers that makes it easy to build, publish, manage, and secure entire APIs. With a few clicks in the AWS Management Console, you can create an API that acts as a “front door” for applications to access data, business logic, or functionality from your back-end services, such as workloads running on EC2) code running on AWS Lambda, or any web application. 
 
-### API Gateway Key Details:
+### API Gateway の詳細:
 - Amazon API Gateway handles all the tasks involved in accepting and processing up to hundreds of thousands of concurrent API calls, including traffic management, authorization and access control, monitoring, and API version management.
 - Amazon API Gateway has no minimum fees or startup costs. You pay only for the API calls you receive and the amount of data transferred out.
 - API Gateway does the following for your APIs:
@@ -1576,10 +1576,10 @@ API Gateway is a fully managed service for developers that makes it easy to buil
 
 ## CloudFormation
 
-### CloudFormation Simplified:
+### CloudFormation の概要:
 CloudFormation is an automated tool for provisioning entire cloud-based environments. It is similar to Terraform where you codify the instructions for what you want to have inside your application setup (X many web servers of Y type with a Z type DB on the backend, etc). It makes it a lot easier to just describe what you want in markup and have AWS do the actual provisioning work involved.
 
-### CloudFormation Key Details:
+### CloudFormation の詳細:
 - The main use case for CloudFormation is for advanced setups and production environments as it is complex and has many robust features.
 - CloudFormation templates can be used to create, update, and delete infrastructure.
 - The templates are written in YAML or JSON
@@ -1598,10 +1598,10 @@ CloudFormation is an automated tool for provisioning entire cloud-based environm
 
 ## ElasticBeanstalk
 
-### ElasticBeanstalk Simplified:
+### ElasticBeanstalk の概要:
 ElasticBeanstalk is another way to script out your provisioning process by deploying existing applications to the cloud. ElasticBeanstalk is aimed toward developers who know very little about the cloud and want the simplest way of deploying their code.
 
-### ElasticBeanstalk Key Details:
+### ElasticBeanstalk の詳細:
 - Just upload your application and ElasticBeanstalk will take care of the underlying infrastructure.
 - ElasticBeanstalk has capacity provisioning, meaning you can use it with autoscaling from the get-go.
 ElasticBeanstalk applies updates to your application by having a duplicate ready with the already updated version. This duplicate is then swapped with the original. This is done as a preventative measure in case your updated application fails. If the app does fail, ElasticBeanstalk will switch back to the original copy with the older version and there will be no downtime experienced by the users who are using your application. 
@@ -1609,10 +1609,10 @@ ElasticBeanstalk applies updates to your application by having a duplicate ready
 
 ## AWS Organizations
 
-### AWS Organizations Simplified:
+### AWS Organizations の概要:
 AWS Organizations is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage.
 
-### AWS Organizations Key Details:
+### AWS Organizations の詳細:
 - Best practices is to use the root account to manage billing only with separate accounts used to deploy resources.
 - The point of AWS Organizations is to deploy permissions to the separate accounts underneath the root account and have those policies trickle down. AWS Organizations helps you centrally govern your environment as you grow and scale your workloads on AWS. 
 - You can use organizational units (OUs) to group similar accounts together to administer as a single unit. This greatly simplifies the management of your accounts. 
