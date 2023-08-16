@@ -88,13 +88,14 @@ If at any point you find yourself feeling uncertain of your progress and in need
 ## Introduction
 
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf">**The official AWS Solutions Architect - Associate (SAA-C02) exam guide**</a>
+
 **編注**日本語版ドキュメントは以下の通り：
 <a href="https://d1.awsstatic.com/ja_JP/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf">**AWS 認定ソリューションアーキテクト - アソシエイト (SAA-C02)  試験ガイド**</a>
 
 ### Exam Content Breakdown:
-![Screen Shot 2020-06-05 at 2 49 08 PM](https://user-images.githubusercontent.com/13093517/83912374-c2b87900-a73b-11ea-9691-b38383b43ff9.png)
+![image](https://github.com/jTakasuRyuji/AWS-SAA-C02-Study-Guide-JA/assets/8042749/23673040-d368-4894-a05f-cc8c83d508aa)
 
-* 分野 1: レジリエントアーキテクチャの設計 
+#### 分野 1: レジリエントアーキテクチャの設計 
 
  1.1 多層アーキテクチャソリューションの設計 
 
@@ -105,7 +106,7 @@ If at any point you find yourself feeling uncertain of your progress and in need
  1.4 適切な回復力のあるストレージの選択 
 
 
-* 分野 2: 高パフォーマンスアーキテクチャの設計 
+#### 分野 2: 高パフォーマンスアーキテクチャの設計 
 
  2.1 ワークロードに対する伸縮自在でスケーラブルな**コンピューティング**ソリューションの識別 
 
@@ -116,7 +117,7 @@ If at any point you find yourself feeling uncertain of your progress and in need
  2.4 ワークロードに対するパフォーマンスの高い**データベース** ソリューションの選択 
 
 
-* 分野 3: セキュアなアプリケーションとアーキテクチャの設計
+#### 分野 3: セキュアなアプリケーションとアーキテクチャの設計
 
  3.1 AWS リソースへのセキュアなアクセスの設計 
 
@@ -125,7 +126,7 @@ If at any point you find yourself feeling uncertain of your progress and in need
  3.3 適切なデータセキュリティオプションの選択 
 
 
-* 分野 4: コスト最適化アーキテクチャの設計 
+#### 分野 4: コスト最適化アーキテクチャの設計 
 
  4.1 コスト効率が高い**ストレージ**ソリューションの識別 
 
