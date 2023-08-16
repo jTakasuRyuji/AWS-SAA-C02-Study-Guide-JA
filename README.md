@@ -92,44 +92,44 @@ If at any point you find yourself feeling uncertain of your progress and in need
 ### Exam Content Breakdown:
 ![Screen Shot 2020-06-05 at 2 49 08 PM](https://user-images.githubusercontent.com/13093517/83912374-c2b87900-a73b-11ea-9691-b38383b43ff9.png)
 
-*Domain 1: Design Resilient Architectures*
+*領域1：レジリエントなアーキテクチャの設計
 
-  1.1 - Design a multi-tier architecture solution
+  1.1 - 多層アーキテクチャソリューションを設計する
 
-  1.2 - Design highly available and/or fault-tolerant architectures
+  1.2 - 高可用性および/または耐障害性のアーキテクチャを設計する
 
-  1.3 - Design decoupling mechanisms using AWS services
+  1.3 - AWS サービスを使用したデカップリングメカニズムの設計
 
-  1.4 - Choose appropriate resilient storage
-
-
-*Domain 2: Design High-Performing Architectures*
-
-  2.1 - Identify elastic and scalable **compute** solutions for a workload
-
-  2.2 - Select high-performing and scalable **storage** solutions for a workload
-
-  2.3 - Select high-performing **networking** solutions for a workload
-
-  2.4 - Choose high-performing **database** solutions for a workload
+  1.4 - 適切な弾力性のあるストレージを選択する
 
 
-*Domain 3: Design Secure Applications and Architectures*
+*ドメイン 2: 高性能アーキテクチャの設計
 
-  3.1 - Design secure access to AWS resources
+  2.1 - ワークロードに対して弾力性がありスケーラブルな **コンピューティング** ソリューションを特定する
 
-  3.2 - Design secure application tiers
+  2.2 - ワークロードに対して、高性能でスケーラブルな **ストレージ** ソリューションを選択する。
 
-  3.3 - Select appropriate data security options
+  2.3 - ワークロードに対して高性能な**ネットワーク** ソリューションを選択する
+
+  2.4 - ワークロードに対して高パフォーマンスの **データベース** ソリューションを選択する
 
 
-*Domain 4: Design Cost-Optimized Architectures*
+*領域 3: 安全なアプリケーションとアーキテクチャの設計
 
-  4.1 - Identify cost-effective **storage** solutions
+  3.1 - AWS リソースへのセキュアなアクセスを設計する
 
-  4.2 - Identify cost-effective **compute** and **database** services
+  3.2 - セキュアなアプリケーション層の設計
 
-  4.3 - Design cost-optimized **network** architectures
+  3.3 - 適切なデータセキュリティオプションを選択する
+
+
+*領域4：コスト最適化アーキテクチャ*の設計
+
+  4.1 - コスト効率のよい**ストレージ** ソリューションを特定する
+
+  4.2 - コスト効率の高い **コンピューティング** および **データベース** サービスを特定する
+
+  4.3 - コスト最適化された**ネットワーク**アーキテクチャの設計
 
 
 
@@ -1677,95 +1677,94 @@ The following section includes services, features, and techniques that may appea
 - Also, you can configure Secrets Manager to automatically rotate the secret for you according to a schedule that you specify. This enables you to replace long-term secrets with short-term ones, which helps to significantly reduce the risk of compromise.
 
 ### What is AWS STS?
-- AWS Security Token Service (AWS STS) is the service that you can use to create and provide trusted users with temporary security credentials that can control access to your AWS resources. 
-- Temporary security credentials work almost identically to the long-term access key credentials that your IAM users can use.
-- Temporary security credentials are short-term, as the name implies. They can be configured to last for anywhere from a few minutes to several hours. After the credentials expire, AWS no longer recognizes them or allows any kind of access from API requests made with them.
+- AWS Security Token Service (AWS STS)は、AWSリソースへのアクセスを制御できる一時的なセキュリティ認証情報を作成し、信頼できるユーザーに提供するために使用できるサービスです。
+- 一時的なセキュリティ認証情報は、IAM ユーザーが使用できる長期的なアクセスキーの認証情報とほぼ同じように機能します。
+- 一時的なセキュリティ認証情報は、その名の通り短期的なものです。数分から数時間持続するように設定できます。クレデンシャルの有効期限が切れると、AWSはそのクレデンシャルを認識しなくなり、そのクレデンシャルを使って行われたAPIリクエストからのアクセスを一切許可しなくなる。
 
 ### What is OpsWorks?
-- AWS OpsWorks is a configuration management service that provides managed instances of Chef and Puppet. Chef and Puppet are automation platforms that allow you to use code to automate the configurations of your servers. 
-- OpsWorks lets you use Chef and Puppet to automate how servers are configured, deployed, and managed across your Amazon EC2 instances or on-premises compute environments. 
-- OpsWorks has three offerings - AWS Opsworks for Chef Automate, AWS OpsWorks for Puppet Enterprise, and AWS OpsWorks Stacks.
-- AWS OpsWorks Stacks lets you manage applications and servers on AWS and on-premises. With OpsWorks Stacks, you can model your application as a stack containing different layers, such as load balancing, database, and application server.
-- OpsWorks Stacks  is complex enough for you to deploy and configure Amazon EC2 instances in each layer or connect to other resources such as Amazon RDS databases.
+- AWS OpsWorksは、ChefとPuppetのマネージドインスタンスを提供する構成管理サービスだ。ChefとPuppetは、コードを使用してサーバーの構成を自動化できる自動化プラットフォームです。
+- OpsWorksを使用すると、ChefとPuppetを使用して、Amazon EC2インスタンスまたはオンプレミスのコンピュート環境全体でサーバーを構成、デプロイ、管理する方法を自動化できる。
+- OpsWorksには、AWS Opsworks for Chef Automate、AWS OpsWorks for Puppet Enterprise、AWS OpsWorks Stacksの3つの製品がある。
+- AWS OpsWorks Stacksでは、AWSとオンプレミス上のアプリケーションとサーバーを管理できる。OpsWorks Stacksを使用すると、ロードバランシング、データベース、アプリケーションサーバーなどの異なるレイヤーを含むスタックとしてアプリケーションをモデル化できます。
+- OpsWorks Stacksは、各レイヤーにAmazon EC2インスタンスをデプロイして構成したり、Amazon RDSデータベースなどの他のリソースに接続したりできるほど複雑です。
 
 ### What is Elastic Transcoder?
-- A media transcoder in the cloud. Basically, it is a service that converts media files from their original format to the media format specified whether for phones, tablets, PCs, etc.
-- Because of the built-in support for different media types, you can trust that the resulting quality will be good.
-- With Elastic Transcoder, you pay per minute of the transcode job and the resolution of the finished work.
+- クラウド上のメディア・トランスコーダー。基本的には、メディアファイルを元のフォーマットから、電話、タブレット、PCなど、指定されたメディアフォーマットに変換するサービスです。
+- 様々なメディアタイプに対応しているため、出来上がりの品質は信頼できる。
+- Elastic Transcoderでは、トランスコード作業の分単位と、完成した作業の解像度ごとに料金を支払います。
 
 ### What is AWS Directory Service?
-- AWS Directory Service provides multiple ways to use Amazon Cloud Directory and Microsoft Active Directory (AD) with other AWS services. 
-- Directories store information about users, groups, and devices, and administrators use them to manage access to information and resources. 
-- AWS Directory Service provides multiple directory choices for customers who want to use existing Microsoft AD or Lightweight Directory Access Protocol (LDAP)–aware applications in the cloud. It also offers those same choices to developers who need a directory to manage users, groups, devices, and access.
+- AWS Directory Serviceは、Amazon Cloud DirectoryとMicrosoft Active Directory（AD）を他のAWSサービスで使用するための複数の方法を提供します。- ディレクトリは、ユーザー、グループ、デバイスに関する情報を格納し、管理者は情報やリソースへのアクセスを管理するために使用する。
+- AWS Directory Serviceは、既存のMicrosoft ADやLDAP（Lightweight Directory Access Protocol）対応のアプリケーションをクラウドで使用したい顧客に対して、複数のディレクトリの選択肢を提供する。また、ユーザー、グループ、デバイス、アクセスを管理するためのディレクトリを必要とする開発者にも、同様の選択肢を提供する。
 
 ### What is IoT Core?
-- AWS IoT Core is a managed cloud service that lets connected devices easily and securely interact with cloud applications and other devices. 
-- AWS IoT Core provides secure communication and data processing across different kinds of connected devices and locations so you can easily build IoT applications.
+- AWS IoT Coreは、コネクテッドデバイスがクラウドアプリケーションや他のデバイスと簡単かつ安全にやり取りできるようにするマネージドクラウドサービスです。
+- AWS IoT Coreは、さまざまな種類のコネクテッドデバイスやロケーション間でセキュアな通信とデータ処理を提供するため、IoTアプリケーションを簡単に構築できます。
 
 ### What is AWS WorkSpaces?
-- Amazon WorkSpaces is a managed, secure Desktop-as-a-Service (DaaS) solution. You can use Amazon WorkSpaces to provision either Windows or Linux desktops in just a few minutes and quickly scale to provide thousands of desktops to workers across the globe. 
-- Amazon WorkSpaces helps you eliminate the complexity in managing hardware inventory, OS versions and patches, and Virtual Desktop Infrastructure (VDI), which helps simplify your desktop delivery strategy. 
-- With Amazon WorkSpaces, your users get a fast, responsive desktop of their choice that they can access anywhere, anytime, from any supported device.
+- Amazon WorkSpacesは、管理された安全なDaaS（Desktop-as-a-Service）ソリューションです。Amazon WorkSpacesを使用すると、WindowsまたはLinuxデスクトップをわずか数分でプロビジョニングし、世界中の従業員に数千台のデスクトップを提供できるように迅速に拡張できます。
+- Amazon WorkSpacesは、ハードウェアの在庫、OSのバージョンとパッチ、仮想デスクトップインフラ（VDI）の管理の複雑さを解消し、デスクトップ提供戦略の簡素化を支援します。
+- Amazon WorkSpacesを使用すれば、ユーザーは、いつでもどこでも、サポートされているデバイスからアクセスできる、高速で応答性の高いデスクトップを選択できます。
 
 ### What is AWS Fargate?
-- AWS Fargate is a serverless compute engine for containers.
-- The Fargate launch type allows you to run your containerized applications without the need to provision and manage the backend infrastructure. Just register your task definition and Fargate launches the container for you. 
-- It works with both Amazon Elastic Container Service (ECS) and Amazon Elastic Kubernetes Service (EKS). 
-- Fargate makes it easy for you to focus on building your applications. It removes the need to provision and manage servers, lets you specify and pay for resources per application, and improves security through application isolation by design.
+- AWS Fargateはコンテナ用のサーバーレスコンピュートエンジンだ。
+- Fargateの起動タイプでは、バックエンドのインフラをプロビジョニング、管理することなく、コンテナ化されたアプリケーションを実行できる。タスク定義を登録するだけで、Fargateがコンテナを起動してくれる。
+- Amazon Elastic Container Service（ECS）とAmazon Elastic Kubernetes Service（EKS）の両方で動作する。
+- Fargateを使えば、アプリケーションの構築に集中することができます。サーバーのプロビジョニングと管理の必要性をなくし、アプリケーションごとにリソースを指定して支払うことができ、設計によるアプリケーションの分離によってセキュリティを向上させます。
 
 ### What is Amazon Elastic Container Service?
-- Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service. 
-- Amazon ECS eliminates the need for you to install, operate, and scale your own cluster management infrastructure. With simple API calls, you can launch and stop container-enabled applications, query the complete state of your cluster, and access many familiar features like security groups, Elastic Load Balancing, EBS volumes and IAM roles. 
-- You can use Amazon ECS to schedule the placement of containers across your cluster based on your resource needs and availability requirements. You can also integrate your own scheduler or third-party schedulers to meet business or application specific requirements.
-- You can choose to run your ECS clusters using AWS Fargate, which is serverless compute for containers. Fargate removes the need to provision and manage servers, lets you specify and pay for resources per application, and improves security through application isolation by design.
+- Amazon Elastic Container Service（Amazon ECS）は、完全に管理されたコンテナ・オーケストレーション・サービスです。
+- Amazon ECSを利用することで、独自のクラスタ管理インフラをインストール、運用、スケールする必要がなくなります。シンプルなAPIコールで、コンテナ対応アプリケーションの起動と停止、クラスタの完全な状態の照会、セキュリティグループ、Elastic Load Balancing、EBSボリューム、IAMロールなどのおなじみの多くの機能へのアクセスが可能です。
+- Amazon ECSを使用して、リソースニーズと可用性要件に基づいてクラスタ全体にコンテナを配置するスケジュールを立てることができます。また、ビジネスやアプリケーション固有の要件を満たすために、独自のスケジューラやサードパーティのスケジューラを統合することもできます。
+- コンテナ用のサーバーレス・コンピュートであるAWS Fargateを使用してECSクラスタを実行することもできます。Fargateは、サーバーのプロビジョニングと管理の必要性を排除し、アプリケーションごとにリソースを指定して支払うことができ、設計によるアプリケーションの分離によってセキュリティを向上させます。
 
 ### What is Amazon Elastic Kubernetes Service?
-- Amazon Elastic Kubernetes Service (Amazon EKS) is a fully managed Kubernetes service. EKS runs upstream Kubernetes and is certified Kubernetes conformant so you can leverage all benefits of open source tooling from the community. You can also easily migrate any standard Kubernetes application to EKS without needing to refactor your code.
-- Kubernetes is open source software that allows you to deploy and manage containerized applications at scale. Kubernetes groups containers into logical groupings for management and discoverability, then launches them onto clusters of EC2 instances. Using Kubernetes you can run containerized applications including microservices, batch processing workers, and platforms as a service (PaaS) using the same tool set on premises and in the cloud.
-- Amazon EKS provisions and scales the Kubernetes control plane, including the API servers and backend persistence layer, across multiple AWS availability zones for high availability and fault tolerance. Amazon EKS automatically detects and replaces unhealthy control plane nodes and provides patching for the control plane. 
-- Without Amazon EKS, you have to run both the Kubernetes control plane and the cluster of worker nodes yourself. With Amazon EKS, you provision your worker nodes using a single command in the EKS console, CLI, or API, and AWS handles provisioning, scaling, and managing the Kubernetes control plane in a highly available and secure configuration. This removes a significant operational burden for running Kubernetes and allows you to focus on building applications instead of managing AWS infrastructure.
-- You can run EKS using AWS Fargate, which is serverless compute for containers. Fargate removes the need to provision and manage servers, lets you specify and pay for resources per application, and improves security through application isolation by design. 
-- Amazon EKS is integrated with many AWS services to provide scalability and security for your applications. These services include Elastic Load Balancing for load distribution, IAM for authentication, Amazon VPC for isolation, and AWS CloudTrail for logging.
+- Amazon Elastic Kubernetes Service（Amazon EKS）はフルマネージドのKubernetesサービスです。EKSはアップストリームのKubernetesを実行し、Kubernetes準拠の認定を受けているため、コミュニティからのオープンソースツールのすべての利点を活用できます。また、コードをリファクタリングすることなく、標準的なKubernetesアプリケーションを簡単にEKSに移行できます。
+- Kubernetesは、コンテナ化されたアプリケーションを大規模にデプロイおよび管理できるオープンソースソフトウェアです。Kubernetesはコンテナを論理的なグループ分けして管理・発見し、EC2インスタンスのクラスタ上に起動します。Kubernetesを使用すると、マイクロサービス、バッチ処理ワーカー、サービスとしてのプラットフォーム（PaaS）などのコンテナ化されたアプリケーションを、オンプレミスとクラウドで同じツールセットを使用して実行できます。
+- Amazon EKSは、APIサーバーとバックエンドの永続化レイヤーを含むKubernetesのコントロールプレーンを、複数のAWSアベイラビリティゾーンにわたってプロビジョニングおよびスケーリングし、高可用性と耐障害性を実現します。Amazon EKSは、不健全なコントロールプレーンノードを自動的に検出して交換し、コントロールプレーンにパッチを適用します。
+- Amazon EKSがなければ、Kubernetesのコントロールプレーンとワーカーノードのクラスタの両方を自分で実行する必要があります。Amazon EKSを使用すると、EKSコンソール、CLI、またはAPIで1つのコマンドを使用してワーカーノードをプロビジョニングし、AWSが可用性の高いセキュアな構成でKubernetesコントロールプレーンのプロビジョニング、スケーリング、管理を行います。これにより、Kubernetesを実行するための運用負荷が大幅に軽減され、AWSインフラストラクチャの管理ではなく、アプリケーションの構築に集中できるようになる。
+- コンテナ用のサーバーレス・コンピュートであるAWS Fargateを使ってEKSを実行できる。Fargateは、サーバーのプロビジョニングと管理の必要性を排除し、アプリケーションごとにリソースを指定して支払うことができ、設計によるアプリケーションの分離によってセキュリティを向上させます。
+- Amazon EKSは多くのAWSサービスと統合されており、アプリケーションにスケーラビリティとセキュリティを提供します。これらのサービスには、負荷分散のためのElastic Load Balancing、認証のためのIAM、分離のためのAmazon VPC、ロギングのためのAWS CloudTrailが含まれます。
 
 ### What does pilot light mean?
-- The term pilot light is often used to describe a disaster recovery scenario in which a minimal version of an environment is always running in the cloud. 
-- The idea of the pilot light is an analogy that comes from the gas heater. In a gas heater, a small flame that’s always on and can quickly ignite the entire furnace to heat up a house. This scenario is similar to a backup-and-restore scenario.
-- For example, with AWS you can maintain a pilot light by configuring and running the most critical core elements of your system in AWS. When the time comes for recovery, you can rapidly provision a full-scale production environment around the critical core that has always been running.
+- パイロット・ライトという言葉は、クラウド上で環境の最小バージョンが常に稼働しているディザスタリカバリ・シナリオを説明するためによく使われる。
+- パイロット・ライトのアイデアは、ガス・ヒーターに由来するアナロジーだ。ガスストーブでは、常に点いている小さな炎が炉全体に素早く点火し、家を暖めることができる。このシナリオは、バックアップとリストアのシナリオに似ている。
+- 例えば、AWSを使えば、システムの最も重要なコアエレメントをAWSで構成し実行することで、パイロットランプを維持することができる。リカバリーの時期が来たら、常に稼働している重要なコアを中心に、フルスケールの本番環境を迅速にプロビジョニングすることができる。
 
 ### What are Blue-Green deployments?
-- One of the challenges with automating deployments is the cut-over from the final stage of testing to live production. You usually need to do this quickly in order to minimize downtime.
-- The Blue-Green deployment approach does this by ensuring you have two production environments, as identical as possible. At any time one of them, let's say blue for the example, is live. As you prepare a new release of your software you do your final stage of testing in the green environment. Once the software is working in the green environment, you switch the router so that all incoming requests go to the green environment - the blue one is now idle.
-- Blue-green deployment also gives you a rapid way to rollback - if anything goes wrong you switch the router back to your blue environment.
-- CloudFormation and CodeDeploy (AWS's version of Jenkins) both support this deployment technique.
-
+- デプロイメントを自動化する際の課題の1つは、テストの最終段階から本番環境へのカットオーバーです。通常、ダウンタイムを最小限に抑えるために、これを迅速に行う必要があります。
+- Blue-Greenデプロイメントアプローチは、可能な限り同一の2つの本番環境を確保することでこれを実現します。いつでもそのうちの1つ（例ではブルーとします）が本番環境です。ソフトウェアの新しいリリースを準備する際、最終段階のテストをグリーン環境で行います。ソフトウェアがグリーン環境で動作するようになったら、ルーターを切り替えて、すべての着信リクエストがグリーン環境に行くようにします。
+- ブルー・グリーン・デプロイメントでは、ロールバックも迅速に行える。何か問題が発生したら、ルーターをブルー環境に戻す。
+- CloudFormationとCodeDeploy（AWS版のJenkins）はどちらもこのデプロイ手法をサポートしている。
+- 
 ### What is Amazon Data Lifecycle Manager?
-- You can use Amazon Data Lifecycle Manager (Amazon DLM) to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes. 
-- Automating snapshot management helps you to:
-  - Protect valuable data by enforcing a regular backup schedule.
-  - Retain backups as required by auditors or internal compliance.
-  - Reduce storage costs by deleting outdated backups.
-- Using Amazon DLM means that you no longer need to remember to take your EBS snapshots, thus reducing cognitive load on engineers.
+- Amazon Data Lifecycle Manager（Amazon DLM）を使用して、Amazon EBSボリュームをバックアップするために取得したスナップショットの作成、保持、および削除を自動化できます。
+- スナップショット管理を自動化すると、以下のことが可能になります：
+  - 定期的なバックアップスケジュールを実施することで、貴重なデータを保護します。
+  - 監査人または内部コンプライアンスによって要求されたバックアップを保持します。
+  - 古いバックアップを削除することで、ストレージコストを削減します。
+- Amazon DLM を使用すると、EBS スナップショットの取得を覚えておく必要がなくなるため、エンジニアの認識負荷が軽減されます。
 
 ### What is Route Origin Authorization?
-- You can bring part or all of your public IPv4 address range from your on-premises network to your AWS account. You continue to own the address range, but AWS advertises it on the Internet. After you bring the address range to AWS, it appears in your account as an address pool. 
-- You can then create an Elastic IP address from your address pool and use it with your AWS resources, such as EC2 instances, NAT gateways, and Network Load Balancers. This is also called "Bring Your Own IP Addresses (BYOIP)".
-- To ensure that only you can bring your address range to your AWS account, you must authorize Amazon to advertise the address range and provide proof that you own the address range.
-- The benefit of ROA is that you can migrate pre-existing applications to AWS without requiring your partners and customers to change their IP address whitelists.  
+- オンプレミスのネットワークからパブリックIPv4アドレス範囲の一部または全部をAWSアカウントに持ってくることができる。アドレス範囲は引き続きお客様の所有ですが、AWSがインターネット上で広告します。アドレス範囲をAWSに持ってくると、アドレスプールとしてアカウントに表示されます。
+- その後、アドレスプールからElastic IPアドレスを作成し、EC2インスタンス、NATゲートウェイ、ネットワークロードバランサーなどのAWSリソースで使用することができます。これは「BYOIP（Bring Your Own IP Addresses）」とも呼ばれる。
+- あなただけがあなたのAWSアカウントにあなたのアドレス範囲をもたらすことができるようにするために、あなたはアドレス範囲を宣伝するためにアマゾンを承認し、あなたがアドレス範囲を所有していることを証明するものを提供する必要があります。
+- ROAの利点は、パートナーや顧客がIPアドレスのホワイトリストを変更することなく、既存のアプリケーションをAWSに移行できることだ。 
 
 ### What is Amazon MQ?
-- Amazon MQ is a managed message broker service that makes it easy to set up and operate message brokers in the cloud.
-- The service is used when migrating services and apps into the cloud from your on-prem which is how it differs from Amazon SQS.
-- Amazon MQ supports durability-optimized brokers backed by Amazon EFS to support high availability and message durability, and throughput-optimized brokers backed by Amazon EBS to support high-volume applications that require low latency and high throughput.
-- You can easily move from any message broker to Amazon MQ because you don’t have to rewrite any messaging code in your applications.
-- Amazon MQ is suitable for enterprise IT pros, developers, and architects who are managing a message broker themselves–whether on-premises or in the cloud–and want to move to a fully managed cloud service without rewriting the messaging code in their applications.
+- Amazon MQはマネージド・メッセージ・ブローカー・サービスで、クラウド上でメッセージ・ブローカーのセットアップと運用を簡単に行うことができる。
+- このサービスは、サービスやアプリをオンプレミスからクラウドに移行する際に使用され、Amazon SQSとは異なる。
+- Amazon MQは、高可用性とメッセージの耐久性をサポートするためにAmazon EFSによってバックアップされた耐久性に最適化されたブローカーと、低レイテンシーと高スループットを必要とする大容量アプリケーションをサポートするためにAmazon EBSによってバックアップされたスループットに最適化されたブローカーをサポートしています。
+- アプリケーションのメッセージングコードを書き換える必要がないため、あらゆるメッセージブローカーからAmazon MQに簡単に移行できます。
+- Amazon MQは、オンプレミスであれクラウドであれ、メッセージブローカーを自社で管理しており、アプリケーションのメッセージングコードを書き換えることなく完全に管理されたクラウドサービスに移行したいと考えている企業のIT担当者、開発者、アーキテクトに適しています。
 
 ### What is AWS Config?
-- AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. Config continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations.
-- With Config, you can review changes in configurations and relationships between AWS resources, dive into detailed resource configuration histories, and determine your overall compliance against the configurations specified in your internal guidelines. This enables you to simplify compliance auditing, security analysis, change management, and operational troubleshooting.
-- AWS Config allows you to do the following: ·        
-  - Evaluate your AWS resource configurations for desired settings. ·         
-  - Get a snapshot of the current configurations of the supported resources that are associated with your AWS account. ·        
-  - Retrieve configurations of one or more resources that exist in your account. ·       
-  - Retrieve historical configurations of one or more resources. ·     
-  - Receive a notification whenever a resource is created, modified, or deleted.     
-  - View relationships between resources. For example, you might want to find all resources that use a particular security group.
+- AWS Configは、AWSリソースの構成の評価、監査、および評価を可能にするサービスです。Configは、AWSリソースの構成を継続的に監視、記録し、記録された構成と目的の構成との評価を自動化することができます。
+- Configを使用すると、AWSリソース間の構成と関係の変更を確認し、リソースの構成履歴を詳細に調べ、社内ガイドラインで指定された構成に対する全体的なコンプライアンスを判断できます。これにより、コンプライアンス監査、セキュリティ分析、変更管理、および運用上のトラブルシューティングを簡素化できます。
+- AWS Configでは以下のことが可能です： -        
+  - AWS リソースの構成を評価し、必要な設定を行う。-         
+  - AWS アカウントに関連付けられているサポートされているリソースの現在の構成のスナップショットを取得する。-        
+  - アカウントに存在する 1 つ以上のリソースの構成を取得します。-       
+  - 1つまたは複数のリソースの過去の構成を取得します。-     
+  - リソースが作成、変更、削除されるたびに通知を受け取る。    
+  - リソース間の関係を表示する。例えば、特定のセキュリティグループを使用するすべてのリソースを検索したい場合など。
