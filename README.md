@@ -88,54 +88,56 @@ If at any point you find yourself feeling uncertain of your progress and in need
 ## Introduction
 
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf">**The official AWS Solutions Architect - Associate (SAA-C02) exam guide**</a>
+**編注**日本語版ドキュメントは以下の通り：
+<a href="https://d1.awsstatic.com/ja_JP/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf">**AWS 認定ソリューションアーキテクト - アソシエイト (SAA-C02)  試験ガイド**</a>
 
 ### Exam Content Breakdown:
 ![Screen Shot 2020-06-05 at 2 49 08 PM](https://user-images.githubusercontent.com/13093517/83912374-c2b87900-a73b-11ea-9691-b38383b43ff9.png)
 
-*領域1：レジリエントなアーキテクチャの設計
+* 分野 1: レジリエントアーキテクチャの設計 
 
-  1.1 - 多層アーキテクチャソリューションを設計する
+ 1.1 多層アーキテクチャソリューションの設計 
 
-  1.2 - 高可用性および/または耐障害性のアーキテクチャを設計する
+ 1.2 可用性の高いアーキテクチャやフォールトトレラントなアーキテクチャの設計 
 
-  1.3 - AWS サービスを使用したデカップリングメカニズムの設計
+ 1.3 AWS のサービスを使用したデカップリングメカニズムの設計 
 
-  1.4 - 適切な弾力性のあるストレージを選択する
-
-
-*ドメイン 2: 高性能アーキテクチャの設計
-
-  2.1 - ワークロードに対して弾力性がありスケーラブルな **コンピューティング** ソリューションを特定する
-
-  2.2 - ワークロードに対して、高性能でスケーラブルな **ストレージ** ソリューションを選択する。
-
-  2.3 - ワークロードに対して高性能な**ネットワーク** ソリューションを選択する
-
-  2.4 - ワークロードに対して高パフォーマンスの **データベース** ソリューションを選択する
+ 1.4 適切な回復力のあるストレージの選択 
 
 
-*領域 3: 安全なアプリケーションとアーキテクチャの設計
+* 分野 2: 高パフォーマンスアーキテクチャの設計 
 
-  3.1 - AWS リソースへのセキュアなアクセスを設計する
+ 2.1 ワークロードに対する伸縮自在でスケーラブルな**コンピューティング**ソリューションの識別 
 
-  3.2 - セキュアなアプリケーション層の設計
+ 2.2 ワークロードに対するパフォーマンスとスケーラブルな**ストレージ**ソリューションの選択 
 
-  3.3 - 適切なデータセキュリティオプションを選択する
+ 2.3 ワークロードに対するパフォーマンスが高い**ネットワーキング**ソリューションの選択 
+
+ 2.4 ワークロードに対するパフォーマンスの高い**データベース** ソリューションの選択 
 
 
-*領域4：コスト最適化アーキテクチャ*の設計
+* 分野 3: セキュアなアプリケーションとアーキテクチャの設計
 
-  4.1 - コスト効率のよい**ストレージ** ソリューションを特定する
+ 3.1 AWS リソースへのセキュアなアクセスの設計 
 
-  4.2 - コスト効率の高い **コンピューティング** および **データベース** サービスを特定する
+ 3.2 セキュアなアプリケーション階層の設計 
 
-  4.3 - コスト最適化された**ネットワーク**アーキテクチャの設計
+ 3.3 適切なデータセキュリティオプションの選択 
+
+
+* 分野 4: コスト最適化アーキテクチャの設計 
+
+ 4.1 コスト効率が高い**ストレージ**ソリューションの識別 
+
+ 4.2 コスト効率が高い**コンピューティング**および**データベース** サービスの識別 
+
+ 4.3 コスト最適化**ネットワーク**アーキテクチャの設計 
 
 
 
 ### Recommended Reading:
 
-You can cover a lot of ground by skimming over what you already know or what you can infer to be true. In particular, read the first sentence of each paragraph and if you have no uncertainty about what is being said in that sentence, move on to the first sentence of the next paragraph. Take notes whenever necessary.
+すでに知っていること、あるいは真実であると推測できることをざっと目を通すことで、多くの分野をカバーすることができる。特に、各段落の最初の文章を読み、その文章で言われていることに不明な点がなければ、次の段落の最初の文章に進む。必要に応じてメモを取る。
 
   1. <a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/wellarchitected-framework.pdf">AWS Well-Architected Framework</a>
 
