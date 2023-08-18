@@ -1641,11 +1641,11 @@ The following section includes services, features, and techniques that may appea
 - When you need to easily add authentication to your mobile and desktop app, think Amazon Cognito.
 
 ### AWS Resource Access Managerとは何か?
-- AWS Resource Access Manager (RAM) is a service that enables you to easily and securely share AWS resources with any AWS account or within your AWS Organization. You can share AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM.
-- Many organizations use multiple accounts to create administrative or billing isolation, and to limit the impact of errors as part of the AWS Organizations service.
-- RAM eliminates the need to create duplicate resources in multiple accounts, reducing the operational overhead of managing those resources in every single account you own. 
-- You can create resources centrally in a multi-account environment, and use RAM to share those resources across accounts in three simple steps: create a Resource Share, specify resources, and specify accounts.
-- RAM is available at no additional charge.
+- AWS Resource Access Manager (RAM)は、任意のAWSアカウントまたはAWS組織内でAWSリソースを簡単かつ安全に共有できるサービスです。AWSトランジットゲートウェイ、サブネット、AWSライセンスマネージャ設定、Amazon Route 53 ResolverルールリソースをRAMで共有できます。
+- 多くの組織は、管理または請求の分離を作成し、AWS Organizationsサービスの一部としてエラーの影響を制限するために、複数のアカウントを使用しています。
+- RAMは、複数のアカウントで重複したリソースを作成する必要性を排除し、所有するすべてのアカウントでそれらのリソースを管理する運用オーバーヘッドを削減します。
+- マルチアカウント環境で一元的にリソースを作成し、RAMを使用して、リソース共有の作成、リソースの指定、アカウントの指定の3つの簡単なステップで、アカウント間でリソースを共有することができます。
+- RAMは追加料金なしでご利用いただけます。
 
 ### Athenaとは何か?
 - Athenaはインタラクティブなクエリサービスで、標準SQLコマンドを使ってS3からデータを照会することができる。これは一般的な開発者にとってプログラム的なクエリに有益である。サーバーレスで、プロビジョニングが不要で、クエリごととスキャンしたTBごとに支払いが発生する。Athenaを使うことで、S3をSQLでサポートされたデータベースに変えることができる。
@@ -1655,14 +1655,14 @@ The following section includes services, features, and techniques that may appea
   - クリックストリームデータに対してクエリーを実行し、顧客の行動をさらに把握する。
 
 ### AWS Macieとは何か?
-- To understand Macie, it is important to understand PII or Personally Identifiable Information:
-  - Personal data used to establish an individual’s identity which can be exploited
-  - Examples: Social Security number, phone number, home address, email address, D.O.B, passport number, etc.
-- Amazon Macie is an ML-powered security service that helps you prevent data loss by automatically discovering, classifying, and protecting sensitive data stored in Amazon S3. Amazon Macie uses machine learning to recognize sensitive data such as personally identifiable information (PII) or intellectual property, assigns a business value, and provides visibility into where this data is stored and how it is being used in your organization.
-- You can be informed of detections via the Macie dashboards, alerts, or reporting.
-- Macie can also analyze CloudTrail logs to see who might have interacted with sensitive data.
-- Macie continuously monitors data access activity for anomalies, and delivers alerts when it detects risk of unauthorized access or inadvertent data leaks. 
-- Macie has ability to detect global access permissions inadvertently being set on sensitive data, detect uploading of API keys inside source code, and verify sensitive customer data is being stored and accessed in a manner that meets their compliance standards.
+- マッキーを理解するためには、PII（個人識別情報）を理解することが重要である：
+  - 個人の身元を確認するために使用され、悪用される可能性のある個人情報。
+  - 例 社会保障番号、電話番号、自宅住所、電子メールアドレス、D.O.B、パスポート番号など。
+- Amazon Macieは、Amazon S3に保存された機密データを自動的に検出、分類、保護することで、データ損失を防ぐMLを活用したセキュリティサービスです。Amazon Macieは、機械学習を使用して、個人を特定できる情報（PII）や知的財産などの機密データを認識し、ビジネス価値を割り当て、このデータがどこに保存され、組織内でどのように使用されているかを可視化します。
+- 検出されたデータは、Macieのダッシュボード、アラート、またはレポートによって通知されます。
+- また、MacieはCloudTrailのログを分析し、機密データに誰がアクセスしたかを確認することができます。
+- Macieはデータアクセスアクティビティに異常がないかを継続的に監視し、不正アクセスや不注意によるデータ漏えいのリスクを検出するとアラートを配信します。
+- Macieには、機密データに誤って設定されたグローバルアクセス許可を検出する機能、ソースコード内のAPIキーのアップロードを検出する機能、機密性の高い顧客データがコンプライアンス基準を満たす方法で保存およびアクセスされていることを検証する機能があります。
 
 ### AWS KMSとは何か?
 - AWS Key Management Service（AWS KMS）は、データの暗号化に使用する暗号鍵を簡単に作成・管理できるマネージドサービスです。AWS KMSで作成するマスターキーは、FIPS 140-2検証済みの暗号モジュールによって保護されます。
@@ -1670,15 +1670,15 @@ The following section includes services, features, and techniques that may appea
 - ディスクに保存する前にすべてのデータを暗号化するために、KMS APIを使用するようにアプリケーションを構成することができます。
 
 ### AWS Secrets Managerとは何か?
-- AWS Secrets Manager is an AWS service that makes it easier for you to manage secrets.
-- Secrets can be database credentials, passwords, third-party API keys, and even arbitrary text. You can store and control access to these secrets centrally by using the Secrets Manager console, the Secrets Manager command line interface (CLI), or the Secrets Manager API and SDKs.
-- In the past, when you created a custom application that retrieves information from a database, you typically had to embed the credentials (the secret) for accessing the database directly in the application. When it came time to rotate the credentials, you had to do much more than just create new credentials. You had to invest time to update the application to use the new credentials. Then you had to distribute the updated application. If you had multiple applications that shared credentials and you missed updating one of them, the application would break. 
-- Because of this risk, many customers have chosen not to regularly rotate their credentials, which effectively substitutes one risk for another (functionality vs. security).
-- Secrets Manager enables you to replace hard-coded credentials in your code (including passwords), with an API call to Secrets Manager to retrieve the secret programmatically.
-- This helps ensure that the secret can't be compromised by someone examining your code, because the secret simply isn't there. 
-- Also, you can configure Secrets Manager to automatically rotate the secret for you according to a schedule that you specify. This enables you to replace long-term secrets with short-term ones, which helps to significantly reduce the risk of compromise.
+- AWS Secrets Managerは、シークレットの管理を容易にするAWSサービス。
+- シークレットには、データベースの認証情報、パスワード、サードパーティのAPIキー、さらには任意のテキストを使用できます。Secrets Managerコンソール、Secrets Managerコマンドラインインターフェイス（CLI）、Secrets Manager APIとSDKを使用することで、これらのシークレットを一元的に保存し、アクセスを制御することができます。
+- 以前は、データベースから情報を取得するカスタムアプリケーションを作成する場合、通常はデータベースにアクセスするための認証情報（シークレット）をアプリケーションに直接埋め込む必要がありました。クレデンシャルをローテーションするとき、新しいクレデンシャルを作成するだけでなく、もっと多くのことをしなければなりませんでした。新しいクレデンシャルを使うためにアプリケーションをアップデートする時間を投資しなければならなかった。そして、更新したアプリケーションを配布しなければならなかった。クレデンシャルを共有する複数のアプリケーションがあり、そのうちの1つを更新し損ねると、アプリケーションは壊れてしまう。
+- このリスクのために、多くのお客様はクレデンシャルを定期的にローテーションしないことを選択しました。
+- Secrets Managerは、コードにハードコードされたクレデンシャル（パスワードを含む）をSecrets ManagerへのAPIコールで置き換え、シークレットをプログラムで取得することを可能にします。
+- これにより、誰かがあなたのコードを調査しても、秘密が漏れることはありません。
+- また、あなたが指定したスケジュールに従って、シークレットマネージャーが自動的にシークレットをローテーションするように設定することもできます。これにより、長期的なシークレットを短期的なシークレットに置き換えることができ、漏洩のリスクを大幅に減らすことができます。
 
-### WAWS STSとは何か?
+### AWS STSとは何か?
 - AWS Security Token Service (AWS STS)は、AWSリソースへのアクセスを制御できる一時的なセキュリティ認証情報を作成し、信頼できるユーザーに提供するために使用できるサービスです。
 - 一時的なセキュリティ認証情報は、IAM ユーザーが使用できる長期的なアクセスキーの認証情報とほぼ同じように機能します。
 - 一時的なセキュリティ認証情報は、その名の通り短期的なものです。数分から数時間持続するように設定できます。クレデンシャルの有効期限が切れると、AWSはそのクレデンシャルを認識しなくなり、そのクレデンシャルを使って行われたAPIリクエストからのアクセスを一切許可しなくなる。
