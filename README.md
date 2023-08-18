@@ -174,8 +174,8 @@ If at any point you find yourself feeling uncertain of your progress and in need
 
 ### IAM の概要:
 
-IAM offers a centralized hub of control within AWS and integrates with all other AWS Services. IAM comes with the ability to share access at various levels of permission and it supports the ability to use identity federation (the process of delegating authentication to a trusted external party like Facebook or Google) for temporary or limited access. IAM comes with MFA support and allows you to set up custom password rotation policy across your entire organization. 
-It is also PCI DSS compliant i.e. payment card industry data security standard. (passes government mandated credit card security regulations).
+IAMは、AWS内の集中管理ハブを提供し、他のすべてのAWSサービスと統合する。IAMは、様々なアクセス許可レベルでアクセスを共有する機能を備えており、一時的または限定的なアクセスのためにIDフェデレーション（FacebookやGoogleのような信頼できる外部パーティに認証を委譲するプロセス）を使用する機能をサポートしている。IAMはMFAをサポートし、組織全体でカスタムパスワードローテーションポリシーを設定することができます。
+また、PCI DSS（ペイメントカード業界のデータセキュリティ基準）にも準拠している。(政府が定めたクレジットカードのセキュリティ規制をクリアしています。）
 
 ### IAM Entities:
 
@@ -193,9 +193,9 @@ IAM Policies are separated from the other entities above because they are not an
 
 ### IAM の詳細:
 
-- IAM is a global AWS services that is not limited by regions. Any user, group, role or policy is accessible globally.
+- IAMはリージョンに制限されないグローバルなAWSサービスである。どのようなユーザー、グループ、ロール、ポリシーでもグローバルにアクセスできる。
 
-- The root account with complete admin access is the account used to sign up for AWS. Therefore, the email address used to create the AWS account for use should probably be the official company email address.
+- 完全な管理者アクセスを持つルートアカウントは、AWSにサインアップするために使用されるアカウントである。したがって、使用するAWSアカウントを作成するために使用するメールアドレスは、おそらく会社の公式メールアドレスであるべきだ。
 
 - New users have no permissions when their accounts are first created. This is a secure way of delegating access as permissions must be intentionally granted.
 
@@ -360,8 +360,8 @@ The Amazon S3 notification feature enables you to receive and send notifications
 - You can integrate your ElasticSearch domain with S3 and Lambda. In this setup, any new logs received by S3 will trigger an event notification to Lambda, which in turn will then run your application code on the new log data. After your code finishes processing, the data will be streamed into your ElasticSearch domain and be available for observation.
 
 ### Maximizing S3 Read/Write Performance:
-- If the request rate for reading and writing objects to S3 is extremely high, you can use sequential date-based naming for your prefixes to improve performance. Earlier versions of the AWS Docs also suggested to use hash keys or random strings to prefix the object's name.  In such cases, the partitions used to store the objects will be better distributed and therefore will allow better read/write performance on your objects. 
-- If your S3 data is receiving a high number of GET requests from users, you should consider using Amazon CloudFront for performance optimization. By integrating CloudFront with S3, you can distribute content via CloudFront's cache to your users for lower latency and a higher data transfer rate. This also has the added bonus of sending fewer direct requests to S3 which will reduce costs. For example, suppose that you have a few objects that are very popular. CloudFront fetches those objects from S3 and caches them. CloudFront can then serve future requests for the objects from its cache, reducing the total number of GET requests it sends to Amazon S3.
+- S3へのオブジェクトの読み書きのリクエストレートが非常に高い場合、パフォーマンスを向上させるために、プレフィックスに日付ベースのシーケンシャルネーミングを使用することができます。以前のバージョンのAWS Docsでは、オブジェクト名のプレフィックスにハッシュキーやランダムな文字列を使うことも提案されていた。 このような場合、オブジェクトの保存に使用されるパーティションがより分散されるため、オブジェクトの読み取り/書き込みパフォーマンスが向上します。
+- S3のデータがユーザーから多くのGETリクエストを受けている場合、パフォーマンス最適化のためにAmazon CloudFrontの使用を検討すべきである。CloudFrontをS3と統合することで、CloudFrontのキャッシュを経由してコンテンツをユーザーに配信し、より低いレイテンシと高いデータ転送レートを実現することができます。また、S3への直接リクエストを減らすことができるため、コスト削減にもつながります。例えば、非常に人気のあるオブジェクトがいくつかあるとします。CloudFrontはそれらのオブジェクトをS3からフェッチし、キャッシュする。CloudFrontはキャッシュからオブジェクトに対する将来のリクエストに対応し、Amazon S3に送信するGETリクエストの総数を減らすことができます。
 - <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html "> More information on how to ensure high performance in S3</a>
 
 ### S3 Server Access Logging:
@@ -494,8 +494,8 @@ Storage Gatewayは、オンプレミス環境とクラウドベースのスト�
 EC2はサイズ変更可能なサーバーインスタンスをスピンアップし、素早くスケールアップ/ダウンできる。インスタンスとは、クラウド上の仮想サーバーのことだ。Amazon EC2では、インスタンス上で実行されるオペレーティングシステムとアプリケーションを設定・構成できる。起動時の構成は、インスタンスの起動時に指定した*Amazon Machine Image（AMI）*のライブコピーです。EC2では、新しいインスタンスのプロビジョニングと起動にかかる時間が非常に短縮されており、EC2では、使用した分だけ支払い、使用量が増えるほど支払いが減り、容量を予約するとさらに支払いが減るようになっている。EC2インスタンスが稼働しているときは、CPU、メモリ、ストレージ、ネットワークに課金される。停止中は、EBSストレージに対してのみ課金される。
 
 ### EC2 の詳細:
-- You can launch different types of instances from a single AMI. An instance type essentially determines the hardware of the host computer used for your instance. Each instance type offers different compute and memory capabilities. You should select an instance type based on the amount of memory and computing power that you need for the application or software that you plan to run on top of the instance.   
-- You can launch multiple instances of an AMI, as shown in the following figure:
+- 単一のAMIから異なるタイプのインスタンスを起動できる。インスタンスタイプは基本的に、インスタンスに使用するホストコンピュータのハードウェアを決定します。各インスタンスタイプは、異なる計算能力とメモリ能力を提供します。インスタンス上で実行する予定のアプリケーションやソフトウェアに必要なメモリ量と計算能力に基づいてインスタンスタイプを選択する必要があります。  
+- 次の図に示すように、AMIの複数のインスタンスを起動できます：
 
 ![architecture_ami_instance](https://user-images.githubusercontent.com/13093517/84097031-64a4c380-a9d1-11ea-8358-1c3eec1c4471.png)
 
@@ -740,10 +740,10 @@ Within the storage and content delivery domains, CloudWatch can inform you about
   - Create dashboards
 
 ### CloudWatch Logs:
-- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon EC2 instances, AWS CloudTrail, Amazon Route 53, and other sources. You can then retrieve the associated log data from CloudWatch Logs.
-- It helps you centralize the logs from all of your systems, applications, and AWS services that you use, in a single, highly scalable service.
-- You can create log groups so that you join logical units of CloudWatch Logs together.
-- You can stream custom log files for further insights.
+- Amazon CloudWatch Logsを使って、Amazon EC2インスタンス、AWS CloudTrail、Amazon Route 53、その他のソースからのログファイルを監視、保存、アクセスすることができる。そして、CloudWatch Logsから関連するログデータを取得することができる。
+- CloudWatch Logsは、使用するすべてのシステム、アプリケーション、AWSサービスからのログを、単一の拡張性の高いサービスに一元化するのに役立つ。
+- ロググループを作成し、CloudWatch Logsの論理ユニットを結合することができる。
+- カスタム・ログ・ファイルをストリーミングして、さらなる洞察を得ることができます。
 
 ### CloudWatch Events:
 - Amazon CloudWatch Events delivers a near real-time stream of system events that describe changes in AWS resources. 
@@ -760,9 +760,8 @@ Within the storage and content delivery domains, CloudWatch can inform you about
 - CloudWatch Metrics allows you to track high resolution metrics at sub-minute intervals all the way down to per second.
 
 ### CloudWatch Dashboards:
-- CloudWatch dashboards are customizable home pages in the CloudWatch console that you can use to monitor your resources in a single view
-- These dashboards integrate with CloudWatch Metrics and CloudWatch Alarms to create customized views of the metrics and alarms for your AWS resources.
-
+- CloudWatchダッシュボードはCloudWatchコンソールのカスタマイズ可能なホームページで、リソースを単一のビューで監視するために使用できます。
+- これらのダッシュボードはCloudWatch MetricsやCloudWatch Alarmsと統合され、AWSリソースのメトリクスやアラームのカスタマイズされたビューを作成します。
 
 ## CloudTrail
 
@@ -899,9 +898,9 @@ Automated backups are enabled by default. The backup data is stored freely up to
 DB instances that are encrypted can't be modified to disable encryption. 
 
 ### RDS Enhanced Monitoring:
-- RDS comes with an Enhanced Monitoring feature. Amazon RDS provides metrics in real time for the operating system (OS) that your DB instance runs on. You can view the metrics for your DB instance using the console, or consume the Enhanced Monitoring JSON output from CloudWatch Logs in a monitoring system of your choice. 
-- By default, Enhanced Monitoring metrics are stored in the CloudWatch Logs for 30 days. To modify the amount of time the metrics are stored in the CloudWatch Logs, change the retention for the RDS OS Metrics log group in the CloudWatch console.
-- Take note that there are key differences between CloudWatch and Enhanced Monitoring Metrics. CloudWatch gathers metrics about CPU utilization from the hypervisor for a DB instance, and Enhanced Monitoring gathers its metrics from an agent on the instance. As a result, you might find differences between the measurements, because the hypervisor layer performs a small amount of work that can be picked up and interpreted as part of the metric.
+- RDSには拡張モニタリング機能があります。Amazon RDSはDBインスタンスが稼働しているオペレーティングシステム（OS）のメトリクスをリアルタイムで提供します。コンソールを使ってDBインスタンスのメトリクスを表示したり、CloudWatch Logsから出力されたEnhanced MonitoringのJSONを任意のモニタリングシステムで利用することができます。
+- デフォルトでは、Enhanced Monitoringのメトリクスは30日間CloudWatch Logsに保存されます。メトリクスがCloudWatch Logsに保存される期間を変更するには、CloudWatchコンソールでRDS OS MetricsロググループのRetentionを変更します。
+- CloudWatchとEnhanced Monitoring Metricsには重要な違いがあることに注意してください。CloudWatchはDBインスタンスのハイパーバイザーからCPU使用率のメトリクスを収集し、Enhanced Monitoringはインスタンス上のエージェントからメトリクスを収集します。その結果、ハイパーバイザー層がメトリクスの一部としてピックアップされ解釈される可能性のある少量の作業を実行するため、測定値の間に違いが見つかるかもしれません。
 
 ## Aurora
 
@@ -931,10 +930,10 @@ AuroraはAWSのフラッグシップDBであり、従来のエンタープライ
 - It removes the complexity of managing database instances and capacity. The database will automatically start up, shut down, and scale to match your application's needs. It will seamlessly scale compute and memory capacity as needed, with no disruption to client connections.
 
 ### Aurora Cluster Endpoints:
-- Using cluster endpoints, you map each connection to the appropriate instance or group of instances based on your use case.
-- You can connect to cluster endpoints associated with different roles or jobs across your Aurora DB. This is because different instances or groups of instances perform different functions.
-- For example, to perform DDL statements you can connect to the primary instance. To perform queries, you can connect to the reader endpoint, with Aurora automatically performing load-balancing among all the Aurora Replicas behind the reader endpoint. For diagnosis or tuning, you can connect to a different endpoint to examine details. 
-- Since the entryway for your DB Instance remains the same after a failover, your application can resume database operation without the need for manual administrative intervention for any of your endpoints.
+- クラスタエンドポイントを使用すると、各接続をユースケースに基づいて適切なインスタンスまたはインスタンスグループにマッピングします。
+- Aurora DB全体で異なるロールまたはジョブに関連付けられたクラスタエンドポイントに接続できます。これは、異なるインスタンスまたはインスタンスグループが異なる機能を実行するためです。
+- 例えば、DDL文を実行するにはプライマリインスタンスに接続します。クエリを実行するには、リーダエンドポイントに接続し、Auroraは自動的にリーダエンドポイントの背後にあるすべてのAuroraレプリカ間で負荷分散を実行します。診断やチューニングのために、別のエンドポイントに接続して詳細を調べることができます。
+- フェイルオーバー後も DB インスタンスの入口は変わらないので、アプリケーションはどのエンドポイントでも手動で管理介入することなくデータベース操作を再開できます。
 
 ### Aurora Reader Endpoints:
 - Aurora Reader endpoints are a subset of the above idea of cluster endpoints. Use the reader endpoint for read operations, such as queries. By processing those statements on the read-only Aurora Replicas, this endpoint reduces the overhead on the primary instance. 
@@ -1186,9 +1185,9 @@ AWS Auto Scalingは、異なるリソースのグループが需要の変化に�
 ![Screen Shot 2020-06-19 at 5 19 02 PM](https://user-images.githubusercontent.com/13093517/85180270-0093c200-b251-11ea-97e3-ed9a80ee5d65.png)
 
 ## Auto Scaling Cooldown Period:
-- The cooldown period is a configurable setting for your Auto Scaling Group that helps to ensure that it doesn't launch or terminate additional instances before the previous scaling activity takes effect. 
-- After the Auto Scaling Group scales using a policy, it waits for the cooldown period to complete before resuming further scaling activities if needed.
-- The default waiting period is 300 seconds, but this can be modified.
+- クールダウン期間は、Auto Scaling Groupに対して構成可能な設定であり、前回のスケーリングアクティビティが有効になる前に追加のインスタンスを起動または終了しないようにするのに役立ちます。
+- ポリシーを使用してAuto Scaling Groupがスケーリングした後、クールダウン期間が完了するのを待ってから、必要に応じてスケーリング活動を再開します。
+- デフォルトの待機期間は300秒ですが、これは変更できます。
 
 ## Virtual Private Cloud (VPC)
 
