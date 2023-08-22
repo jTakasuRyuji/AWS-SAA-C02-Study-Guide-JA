@@ -179,17 +179,17 @@ IAMは、AWS内の集中管理ハブを提供し、他のすべてのAWSサー�
 
 ### IAM Entities:
 
-**Users** - any individual end user such as an employee, system architect, CTO, etc.
+**ユーザー** - 従業員、システム・アーキテクト、CTOなど、個々のエンド・ユーザー。
 
-**Groups** - any collection of similar people with shared permissions such as system administrators, HR employees, finance teams, etc. Each user within their specified group will inherit the permissions set for the group.
+**グループ** - システム管理者、人事担当者、財務チームなど、権限を共有する類似した人々の集まり。指定されたグループ内の各ユーザーは、グループに設定された権限を継承します。
 
-**Roles** - any software service that needs to be granted permissions to do its job, e.g- AWS Lambda needing write permissions to S3 or a fleet of EC2 instances needing read permissions from a RDS MySQL database.
+**ロール** - AWS LambdaがS3への書き込みパーミッションを必要としたり、EC2インスタンス群がRDS MySQLデータベースからの読み取りパーミッションを必要とするなど、仕事をするためにパーミッションを付与される必要があるソフトウェアサービス。
 
-**Policies** - the documented rule sets that are applied to grant or limit access. In order for users, groups, or roles to properly set permissions, they use policies. Policies are written in JSON and you can either use custom policies for your specific needs or use the default policies set by AWS.
+**ポリシー** - アクセスを許可または制限するために適用される、文書化されたルールセット。ユーザー、グループ、ロールが適切にパーミッションを設定するには、ポリシーを使用する。ポリシーはJSONで記述され、特定のニーズに合わせてカスタムポリシーを使用するか、AWSによって設定されたデフォルトポリシーを使用することができる。
 
 ![Screen Shot 2020-06-06 at 10 49 48 PM](https://user-images.githubusercontent.com/13093517/83959193-11533980-a848-11ea-9d03-d8133e0aaa86.png)
 
-IAM Policies are separated from the other entities above because they are not an IAM Identity. Instead, they are attached to IAM Identities so that the IAM Identity in question can perform its necessary function.
+IAMポリシーはIAM IDではないため、上記の他のエンティティとは区別される。代わりに、IAM Identityに添付され、当該IAM Identityが必要な機能を実行できるようにする。
 
 ### IAM の詳細:
 
@@ -197,32 +197,32 @@ IAM Policies are separated from the other entities above because they are not an
 
 - 完全な管理者アクセスを持つルートアカウントは、AWSにサインアップするために使用されるアカウントである。したがって、使用するAWSアカウントを作成するために使用するメールアドレスは、おそらく会社の公式メールアドレスであるべきだ。
 
-- New users have no permissions when their accounts are first created. This is a secure way of delegating access as permissions must be intentionally granted.
+- 新規ユーザーは、アカウントが最初に作成されたとき、何の権限も持っていません。これは、パーミッションを意図的に付与する必要があるため、アクセスを委譲する安全な方法です。
 
-- When joining the AWS ecosystem for the first time, new users are supplied an access key ID and a secret access key ID when you grant them programmatic access. These are created just once specifically for the new user to join, so if they are lost simply generate a new access key ID and a new secret access key ID. Access keys are only used for the AWS CLI and SDK so you cannot use them to access the console.
+- 初めてAWSエコシステムに参加する場合、プログラムアクセスを付与する際に、新規ユーザーにはアクセスキーIDとシークレットアクセスキーIDが提供されます。これらは新規ユーザーが参加するために特別に一度だけ作成されるため、紛失した場合は新しいアクセスキーIDとシークレットアクセスキーIDを生成するだけです。アクセスキーは AWS CLI と SDK でのみ使用されるので、コンソールへのアクセスには使用できません。
 
-- When creating your AWS account, you may have an existing identity provider internal to your company that offers Single Sign On (SSO). If this is the case, it is useful, efficient, and entirely possible to reuse your existing identities on AWS. To do this, you let an IAM role be assumed by one of the Active Directories. This is because the IAM ID Federation feature allows an external service to have the ability to assume an IAM role.
+- AWSアカウントを作成する際、シングルサインオン(SSO)を提供する社内の既存のIDプロバイダがあるかもしれません。このような場合、AWS 上で既存の ID を再利用することは便利で効率的であり、完全に可能です。これを行うには、IAMロールをActive Directoryの1つに引き受けさせる。これは、IAM IDフェデレーション機能によって、外部サービスがIAMロールを引き受けることができるようになるからだ。
 
-- IAM Roles can be assigned to a service, such as an EC2 instance, prior to its first use/creation or after its been in used/created. You can change permissions as many times as you need. This can all be done by using both the AWS console and the AWS command line tools.
+- IAMロールは、EC2インスタンスのようなサービスに、最初の使用/作成前、または使用/作成後に割り当てることができる。パーミッションは何度でも変更できる。これはすべてAWSコンソールとAWSコマンドラインツールの両方を使用して行うことができる。
 
-- You cannot nest IAM Groups. Individual IAM users can belong to multiple groups, but creating subgroups so that one IAM Group is embedded inside of another IAM Group is not possible.
+- IAMグループをネストすることはできない。個々の IAM ユーザーは複数のグループに属することができるが、ある IAM グループを別の IAM グループの中に埋め込むようにサブグループを作成することはできない。
 
-- With IAM Policies, you can easily add tags that help define which resources are accessible by whom. These tags are then used to control access via a particular IAM policy. For example, production and development EC2 instances might be tagged as such. This would ensure that people who should only be able to access development instances cannot access production instances.  
+- IAMポリシーでは、どのリソースに誰がアクセスできるかを定義するタグを簡単に追加できる。これらのタグを使用して、特定のIAMポリシーでアクセスを制御する。例えば、本番用EC2インスタンスと開発用EC2インスタンスには、このようなタグを付けることができる。これにより、開発用インスタンスにしかアクセスできないはずの人が本番用インスタンスにアクセスできないようにすることができる。 
 
-### Priority Levels in IAM:
-- **Explicit Deny**: Denies access to a particular resource and this ruling cannot be overruled.
+### IAMの優先レベル
+- **Explicit Deny** (明示的拒否)： 特定のリソースへのアクセスを拒否し、この裁定を覆すことはできない。
 
-- **Explicit Allow**: Allows access to a particular resource so long as there is not an associated Explicit Deny.
+-**Explicit Allow**: 特定のリソースへのアクセスを許可する： 明示的拒否(Explicit Deny)**: 特定のリソースへのアクセスを許可する。
 
-- **Default Deny (or Implicit Deny)**: IAM identities start off with no resource access. Access instead must be granted.
+- **Default Deny (またはImplicit Deny)**： IAM IDはリソースにアクセスできない状態で開始する。代わりにアクセスを許可する必要があります。
 
-### IAM Security Tools:
-   **IAM Access Advisor(user level)**
--  Acess advisor shows service permissions granted to a user and when those services were last accessed.
--  You can use this information to revise your policies.
+### IAM セキュリティツール：
+   **IAM Access Advisor(ユーザー・レベル)
+- アクセス・アドバイザーは、ユーザーに付与されたサービス権限と、それらのサービスが最後にアクセ スされた日時を表示します。
+- この情報を使用して、ポリシーを修正できます。
 
-  **IAM Credentials Report(account level)**
--   a report that list all your account users and the status of their various credentials.
+  **IAM 資格情報レポート(アカウントレベル)
+- すべてのアカウントユーザーとその各種資格情報のステータスを一覧表示するレポートです。
 
 
 ## Simple Storage Service (S3)
@@ -291,13 +291,13 @@ S3にアップロードされたデータは、複数のファイルや施設に
 - 新しいファイルをアップロードし、バージョン管理を有効にすると、以前のバージョンのプロパティは継承されません。
 
 ### S3 Storage Classes:
-**S3 Standard** - 99.99% availability and 11 9s durability. Data in this class is stored redundantly across multiple devices in multiple facilities and is designed to withstand the failure of 2 concurrent data centers.
+**S3 Standard** - 99.99%の可用性と11 9sの耐久性。このクラスのデータは、複数の施設の複数のデバイスに冗長的に保存され、同時に2つのデータセンターの障害に耐えられるように設計されています。
 
-**S3 Infrequently Accessed (IA)** - For data that is needed less often, but when it is needed the data should be available quickly. The storage fee is cheaper, but you are charged for retrieval.
+**S3 Infrequently Accessed (IA)** - 必要な頻度は低いが、必要なときに素早く利用できるデータ用。保管料は安いが、検索には料金がかかる。
 
-**S3 One Zone Infrequently Accessed (an improvement of the legacy RRS / Reduced Redundancy Storage)** -  For when you want the lower costs of IA, but do not require high availability. This is even cheaper because of the lack of HA.
+**S3 One Zone Infrequently Accessed（従来のRRS/Reduced Redundancy Storageの改良版）** - IAの低コストが必要だが、高可用性は必要ない場合。高可用性（HA）を必要としないため、さらに安価です。
 
-**S3 Intelligent Tiering** - Uses built-in ML/AI to determine the most cost-effective storage class and then automatically moves your data to the appropriate tier. It does this without operational overhead or performance impact.
+**S3インテリジェント・ティアリング** - 組み込みのML/AIを使用して、最も費用対効果の高いストレージクラスを決定し、データを自動的に適切な階層に移動します。運用上のオーバーヘッドやパフォーマンスへの影響はありません。
 
 **S3 Glacier** - データ・アーカイブ用の低コストのストレージ・クラス。このクラスは、検索があまり必要とされない純粋な保存用である。検索時間は数分から数時間です。デフォルトの検索時間をどの程度許容できるかによって、検索方法が異なります：
 
@@ -307,21 +307,21 @@ S3にアップロードされたデータは、複数のファイルや施設に
 
 上記のExpeditedの期間は、AWS全体で異常に需要が高い稀な状況では長くなる可能性があります。どのような状況においてもGlacierデータへの迅速なアクセスが絶対に必要な場合は、*Provisioned Capacity*を購入する必要があります。Provisioned Capacityは、Expedited検索が常に1～5分の時間制約内で動作することを保証します。
 
-**S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
+**S3 Deep Glacier** - 最も低コストのS3ストレージで、検索には12時間かかる。
 
 <img width="1246" alt="storage_types" src="https://user-images.githubusercontent.com/13093517/83919060-e1247180-a747-11ea-9336-e92ee163ac7a.png">
 
 ### S3 Encryption:
-S3 data can be encrypted both in transit and at rest.
+S3データは、転送中と静止時の両方で暗号化できる。
 
-**Encryption In Transit**: When the traffic passing between one endpoint to another is indecipherable. Anyone eavesdropping between server A and server B won’t be able to make sense of the information passing by. Encryption in transit for S3 is always achieved by SSL/TLS.
+**転送中の暗号化**： あるエンドポイントから別のエンドポイント間を通過するトラフィックが解読不可能な場合。サーバーAとサーバーBの間を盗聴する者は、通過する情報を理解することができない。S3のトランジットにおける暗号化は、常にSSL/TLSによって達成される。
 
-**Encryption At Rest**: When the immobile data sitting inside S3 is encrypted. If someone breaks into a server, they still won’t be able to access encrypted info within that server. Encryption at rest can be done either on the server-side or the client-side. The server-side is when S3 encrypts your data as it is being written to disk and decrypts it when you access it. The client-side is when you personally encrypt the object on your own and then upload it into S3 afterwards.
+**Encryption At Rest**： S3内の不動データが暗号化されている場合。誰かがサーバーに侵入しても、そのサーバー内の暗号化された情報にアクセスすることはできない。静止時の暗号化は、サーバーサイドかクライアントサイドのどちらかで行われる。サーバーサイドとは、S3がデータをディスクに書き込む際に暗号化し、アクセス時に復号化することです。クライアントサイドは、あなたが個人的にオブジェクトを暗号化し、その後S3にアップロードすることです。
 
-You can encrypt on the AWS supported server-side in the following ways:
-- **S3 Managed Keys / SSE - S3 (server side encryption S3 )** - when Amazon manages the encryption and decryption keys for you automatically. In this scenario, you concede a little control to Amazon in exchange for ease of use.
-- **AWS Key Management Service / SSE - KMS** - when Amazon and you both manage the encryption and decryption keys together.
-- **Server Side Encryption w/ customer provided keys / SSE - C** - when I give Amazon my own keys that I manage. In this scenario, you concede ease of use in exchange for more control.
+AWSがサポートするサーバーサイドでは、以下の方法で暗号化できる：
+- S3 Managed Keys / SSE - S3 (server side encryption S3 )** - Amazonが自動的に暗号化と復号鍵を管理する場合。このシナリオでは、使いやすさと引き換えに、アマゾンに若干のコントロールを譲ることになる。
+- AWS鍵管理サービス/SSE - KMS** - アマゾンとあなたの両方が暗号化と復号化の鍵を一緒に管理する場合。
+- Server Side Encryption w/ customer provided keys / SSE - C** - 自分が管理する自分の鍵をアマゾンに渡す場合。このシナリオでは、より多くのコントロールと引き換えに、使いやすさを譲歩することになる。
 
 ### S3 Versioning:
 - バージョニングが有効な場合、S3は全ての書き込みや削除を含むオブジェクトの全てのバージョンを保存する。
@@ -331,33 +331,31 @@ You can encrypt on the AWS supported server-side in the following ways:
 - バージョニングはライフサイクルルールと統合されているので、バージョンに基づいてデータを期限切れにしたり移行したりするルールを設定することができます。
 - バージョニングにはMFA削除機能もあり、さらなるセキュリティレイヤーを提供する。
 
-### S3 Lifecycle Management:
-- Automates the moving of objects between the different storage tiers.
-- Can be used in conjunction with versioning.
-- Lifecycle rules can be applied to both current and previous versions of an object.
+### S3 ライフサイクル管理：
+- 異なるストレージ層間のオブジェクトの移動を自動化する。
+- バージョニングと併用可能。
+- ライフサイクルルールはオブジェクトの現在のバージョンと以前のバージョンの両方に適用できる。
 
-### S3 Cross Region Replication:
-- Cross region replication only work if versioning is enabled.
-- When cross region replication is enabled, no pre-existing data is transferred. Only new uploads into the original bucket are replicated. All subsequent updates are replicated.
-- When you replicate the contents of one bucket to another, you can actually change the ownership of the content if you want. You can also change the storage tier of the new bucket with the replicated content.
-- When files are deleted in the original bucket (via a delete marker as versioning prevents true deletions), those deletes are not replicated.
-- <a href="https://aws.amazon.com/solutions/cross-region-replication-monitor/">Cross Region Replication Overview</a>
-- <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated ">What is and isn’t replicated such as encrypted objects, deletes, items in glacier, etc.</a>
+### S3 クロスリージョンレプリケーション：
+- クロスリージョンレプリケーションはバージョニングが有効な場合にのみ機能する。
+- クロスリージョンレプリケーションが有効な場合、既存のデータは転送されません。元のバケットへの新規アップロードのみがレプリケートされます。それ以降の更新はすべてレプリケートされます。
+- あるバケットの内容を別のバケットにレプリケートするとき、必要であればコンテンツの所有者を実際に変更することができます。また、複製されたコンテンツのある新しい Bucket のストレージ階層を変更することもできます。
+- 元の Bucket でファイルが削除された場合（バージョン管理によって真の削除ができないため、削除マーカーによって）、その削除はレプリケートされません。
 
-### S3 Transfer Acceleration:
-- Transfer acceleration makes use of the CloudFront network by sending or receiving data at CDN points of presence (called edge locations) rather than slower uploads or downloads at the origin.
-- This is accomplished by uploading to a distinct URL for the edge location instead of the bucket itself. This is then transferred over the AWS network backbone at a much faster speed.
+### S3転送アクセラレーション：
+- 転送アクセラレーションは、オリジンでの遅いアップロードやダウンロードではなく、CDNが存在するポイント（エッジロケーションと呼ばれる）でデータを送受信することで、CloudFrontネットワークを利用します。
+- これは、バケット自体ではなく、エッジロケーションの個別のURLにアップロードすることで達成されます。これは、AWSネットワークバックボーン上でより高速に転送されます。
 - <a href="https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html">You can test transfer acceleration speed directly in comparison to regular uploads.</a>
 
-### S3 Event Notications:
-The Amazon S3 notification feature enables you to receive and send notifications when certain events happen in your bucket. To enable notifications, you must first configure the events you want Amazon S3 to publish (new object added, old object deleted, etc.) and the destinations where you want Amazon S3 to send the event notifications. Amazon S3 supports the following destinations where it can publish events:
-- **Amazon Simple Notification Service (Amazon SNS)** - A web service that coordinates and manages the delivery or sending of messages to subscribing endpoints or clients.
-- **Amazon Simple Queue Service (Amazon SQS)** - SQS offers reliable and scalable hosted queues for storing messages as they travel between computers.
-- **AWS Lambda** - AWS Lambda is a compute service where you can upload your code and the service can run the code on your behalf using the AWS infrastructure. You package up and upload your custom code to AWS Lambda when you create a Lambda function. The S3 event triggering the Lambda function also can serve as the code's input.
+### S3 イベント通知：
+Amazon S3の通知機能により、バケット内で特定のイベントが発生した際に通知を受信・送信することができます。通知を有効にするには、まず Amazon S3 に発行させたいイベント（新しいオブジェクトが追加された、古いオブジェクトが削除されたなど）と、Amazon S3 にイベント通知を送信させたい宛先を設定する必要があります。Amazon S3はイベントを発行できる以下の送信先をサポートしています：
+- Amazon Simple Notification Service (Amazon SNS)** - 購読しているエンドポイントやクライアントへのメッセージの配信や送信を調整、管理するウェブサービス。
+- Amazon Simple Queue Service (Amazon SQS)** - SQS は、コンピュータ間を移動するメッセージを格納するための、信頼性が高くスケーラブルなホステッドキューを提供します。
+- AWS Lambda** - AWS Lambdaは、あなたがコードをアップロードすることができ、サービスがAWSインフラストラクチャを使用してあなたに代わってコードを実行することができる計算サービスです。Lambda関数を作成する際に、カスタムコードをパッケージ化してAWS Lambdaにアップロードする。Lambda関数をトリガーするS3イベントは、コードの入力としても機能する。
 
-###  S3 and ElasticSearch:
-- If you are using S3 to store log files, ElasticSearch provides full search capabilities for logs and can be used to search through data stored in an S3 bucket.
-- You can integrate your ElasticSearch domain with S3 and Lambda. In this setup, any new logs received by S3 will trigger an event notification to Lambda, which in turn will then run your application code on the new log data. After your code finishes processing, the data will be streamed into your ElasticSearch domain and be available for observation.
+### S3とElasticSearch：
+- ログファイルの保存にS3を使用している場合、ElasticSearchはログの完全な検索機能を提供し、S3バケットに保存されたデータの検索に使用できます。
+- ElasticSearchドメインをS3やLambdaと統合することができます。このセットアップでは、S3が受信した新しいログがLambdaへのイベント通知をトリガーし、Lambdaが新しいログデータに対してアプリケーションコードを実行します。コードが処理を終えると、データはElasticSearchドメインにストリーミングされ、観察できるようになります。
 
 ### Maximizing S3 Read/Write Performance:
 - S3へのオブジェクトの読み書きのリクエストレートが非常に高い場合、パフォーマンスを向上させるために、プレフィックスに日付ベースのシーケンシャルネーミングを使用することができます。以前のバージョンのAWS Docsでは、オブジェクト名のプレフィックスにハッシュキーやランダムな文字列を使うことも提案されていた。 このような場合、オブジェクトの保存に使用されるパーティションがより分散されるため、オブジェクトの読み取り/書き込みパフォーマンスが向上します。
