@@ -414,32 +414,31 @@ Amazon S3の通知機能により、バケット内で特定のイベントが�
 AWSのCDNサービスはCloudFrontと呼ばれている。アプリケーションのグローバルパフォーマンスを向上させるために、キャッシュされたコンテンツやアセットを提供する。CloudFrontの主なコンポーネントは、エッジロケーション（キャッシュエンドポイント）、オリジン（EC2インスタンス、S3バケット、Elastic Load Balancer、Route 53コンフィグなど、キャッシュされる真実のオリジナルソース）、ディストリビューション（オリジンからのエッジロケーションの配置、基本的にはネットワークそのもの）である。
 
 ### CloudFront の詳細:
-- When content is cached, it is done for a certain time limit called the Time To Live, or TTL, which is always in seconds
-- If needed, CloudFront can serve up entire websites including dynamic, static, streaming and interactive content. 
-- Requests are always routed and cached in the nearest edge location for the user, thus propagating the CDN nodes and guaranteeing best performance for future requests.
-- There are two different types of distributions: 
-  - **Web Distribution**: web sites, normal cached items, etc
-  - **RTMP**: streaming content, adobe, etc
-- Edge locations are not just read only. They can be written to which will then return the write value back to the origin.
-- Cached content can be manually invalidated or cleared beyond the TTL, but this does incur a cost.
-- You can invalidate the distribution of certain objects or entire directories so that content is loaded directly from the origin every time. Invalidating content is also helpful when debugging if content pulled from the origin seems correct, but pulling that same content from an edge location seems incorrect.
-- You can set up a failover for the origin by creating an origin group with two origins inside. One origin will act as the primary and the other as the secondary. CloudFront will automatically switch between the two when the primary origin fails.
-- Amazon CloudFront delivers your content from each edge location and offers a Dedicated IP Custom SSL feature. SNI Custom SSL works with most modern browsers.
-- If you run PCI or HIPAA-compliant workloads and need to log usage data, you can do the following:
-    - Enable CloudFront access logs. 
-    - Capture requests that are sent to the CloudFront API.
-- An Origin Access Identity (OAI) is used for sharing private content via CloudFront. The OAI is a virtual user that will be used to give your CloudFront distribution permission to fetch a private object from your origin (e.g. S3 bucket).
+- コンテンツがキャッシュされる場合、TTL（Time To Live）と呼ばれる一定の制限時間が設定されます。
+- 必要に応じて、CloudFrontは動的、静的、ストリーミング、インタラクティブなコンテンツを含むウェブサイト全体を提供することができます。
+- リクエストは常にルーティングされ、ユーザーに最も近いエッジロケーションにキャッシュされるため、CDNノードが伝播し、将来のリクエストに対して最高のパフォーマンスが保証される。
+- 配信には2つのタイプがあります： 
+  - **ウェブ配信**：ウェブサイト、通常のキャッシュアイテムなど
+  - **RTMP**：ストリーミング・コンテンツ、アドビなど
+- エッジロケーションは読み取り専用ではない。それらは書き込むことができ、書き込んだ値を元に戻すことができる。
+- キャッシュされたコンテンツは手動で無効にしたり、TTLを超えてクリアすることができますが、これにはコストがかかります。
+- 特定のオブジェクトやディレクトリ全体の配布を無効にすることで、コンテンツが毎回オリジンから直接読み込まれるようにすることができます。コンテンツの無効化は、オリジンからプルされたコンテンツが正しいように見えても、同じコンテンツをエッジロケーションからプルすると正しくないように見える場合のデバッグ時にも役立ちます。
+- オリジンのフェイルオーバーを設定するには、内部に2つのオリジンを持つオリジングループを作成します。1つのオリジンがプライマリ、もう1つがセカンダリとして機能します。プライマリーオリジンに障害が発生すると、CloudFrontは自動的に2つのオリジンを切り替えます。
+- PCIやHIPAAに準拠したワークロードを実行しており、使用データをログに記録する必要がある場合は、次のようにします：
+    - CloudFrontのアクセスログを有効にする。
+    - CloudFront APIに送信されたリクエストをキャプチャする。
+- オリジンアクセスアイデンティティ（Origin Access Identity：OAI）は、CloudFront経由でプライベートコンテンツを共有するために使用されます。OAIは、CloudFrontディストリビューションにオリジン（例えばS3バケット）からプライベートオブジェクトを取得する許可を与えるために使用される仮想ユーザーです。
 
-### CloudFront Signed URLs and Signed Cookies:
-- CloudFront signed URLs and signed cookies provide the same basic functionality: they allow you to control who can access your content. These features exist because many companies that distribute content via the internet want to restrict access to documents, business data, media streams, or content that is intended for selected users. As an example, users who have paid a fee should be able to access private content that users on the free tier shouldn't. 
-- If you want to serve private content through CloudFront and you're trying to decide whether to use signed URLs or signed cookies, consider the following:
-  - Use signed URLs for the following cases:
-    - You want to use an RTMP distribution. Signed cookies aren't supported for RTMP distributions.
-    - You want to restrict access to individual files, for example, an installation download for your application.
-    - Your users are using a client (for example, a custom HTTP client) that doesn't support cookies.
-  - Use signed cookies for the following cases:
-    - You want to provide access to multiple restricted files. For example, all of the files for a video in HLS format or all of the files in the paid users' area of a website.
-    - You don't want to change your current URLs.
+### CloudFrontの署名付きURLと署名付きクッキー：
+- CloudFrontの署名付きURLと署名付きクッキーは同じ基本機能を提供します。これらの機能が存在するのは、インターネット経由でコンテンツを配信する多くの企業が、ドキュメント、ビジネスデータ、メディアストリーム、または特定のユーザー向けのコンテンツへのアクセスを制限したいからです。例えば、料金を支払ったユーザーはプライベートコンテンツにアクセスでき、無料層のユーザーはアクセスできないようにする必要があります。
+- CloudFrontを通じてプライベートコンテンツを提供したい場合、署名付きURLと署名付きCookieのどちらを使うか決めかねているのであれば、以下を検討してください：
+  - 以下の場合は署名付きURLを使用してください：
+    - RTMPディストリビューションを使用したい。署名付きクッキーはRTMPディストリビューションではサポートされていません。
+    - アプリケーションのインストール・ダウンロードなど、個々のファイルへのアクセスを制限したい。
+    - ユーザがCookieをサポートしないクライアント（例えば、カスタムHTTPクライアント）を使用している。
+  - 次のような場合は、署名付きクッキーを使用してください：
+    - 複数の制限付きファイルへのアクセスを提供したい。たとえば、HLS 形式のビデオのすべてのファイルや、ウェブサイトの有料ユーザー エリア内のすべてのファイルなどです。
+    - 現在の URL を変更したくない場合。
 
 ## Snowball
 
@@ -455,9 +454,10 @@ Snowballは、大量のデータをAWSに移行するための巨大な物理デ
 - 
 ![Screen Shot 2020-06-07 at 10 53 22 PM](https://user-images.githubusercontent.com/13093517/83988618-c271d680-a911-11ea-9594-a82f690a786b.png)
 
-### Snowball Edge and Snowmobile:
-- Snowball Edge is a specific type of Snowball that comes with both compute *and* storage capabilities via AWS Lambda and specific EC2 instance types. This means you can run code within your snowball while your data is en route to an Amazon data center. This enables support of local workloads in remote or offline locations and as a result, Snowball Edge does not need to be limited to a data transfer service. An interesting use case is with airliners. Planes sometimes fly with snowball edges onboard so they can store large amounts of flight data and compute necessary functions for the plane’s own systems. Snowball Edges can also be clustered locally for even better performance.
-- Snowmobile is an exabyte-scale data transfer solution. It is a data transport solution for 100 petabytes of data and is contained within a 45-foot shipping container hauled by a semi-truck. This massive transfer makes sense if you want to move your entire data center with years of data into the cloud.
+### Snowball EdgeとSnowmobile：
+- Snowball Edgeは、AWS Lambdaと特定のEC2インスタンスタイプを経由して、コンピュート*と*ストレージ機能の両方が付属しているSnowballの特定のタイプです。これは、データがAmazonデータセンターに送られる途中で、Snowball内でコードを実行できることを意味する。これにより、遠隔地やオフラインの場所でのローカル・ワークロードのサポートが可能になり、その結果、Snowball Edgeはデータ転送サービスに限定される必要がなくなる。興味深いユースケースは旅客機だ。飛行機にはスノーボール・エッジが搭載されていることがあり、大量のフライトデータを保存したり、飛行機自身のシステムに必要な機能を計算したりすることができる。スノーボール・エッジをローカルにクラスタ化することで、パフォーマンスをさらに向上させることもできる。
+- スノーモービルはエクサバイト規模のデータ転送ソリューションです。これは100ペタバイトのデータに対応するデータ転送ソリューションで、セミトラックで運ばれる45フィートの輸送コンテナ内に収められている。数年分のデータを含むデータセンター全体をクラウドに移行したい場合、この大規模な転送は理にかなっている。
+![image](https://github.com/jTakasuRyuji/AWS-SAA-C02-Study-Guide-JA/assets/8042749/c91b22df-cb5e-4d04-8fc9-7d1099f68638)
 
 ## Storage Gateway
 
@@ -465,24 +465,24 @@ Snowballは、大量のデータをAWSに移行するための巨大な物理デ
 Storage Gatewayは、オンプレミス環境とクラウドベースのストレージを接続し、オンプレミスのアプリケーションとクラウドストレージのバックエンドをシームレスかつ安全に統合するサービスである。Storage Gatewayには3つの種類がある： File Gateway、Volume Gateway、Tape Gatewayである。
 
 
-### Storage Gateway の詳細:
-- The Storage Gateway service can either be a physical device or a VM image downloaded onto a host in an on-prem data center. It acts as a bridge to send or receive data from AWS.
-- Storage Gateway can sit on top of VMWare's ESXi hypervisor for Linux machines and Microsoft’s Hyper-V hypervisor for Windows machines.
-- The three types of Storage Gateways are below:
-  - **File Gateway** - Operates via NFS or SMB and is used to store files in S3 over a network filesystem mount point in the supplied virtual machine. Simply put, you can think of a File Gateway as a file system mount on S3.
-  - **Volume Gateway** - Operates via iSCSI and is used to store copies of hard disk drives or virtual hard disk drives in S3. These can be achieved via *Stored Volumes* or *Cached Volumes*. Simply put, you can think of Volume Gateway as a way of storing virtual hard disk drives in the cloud. 
-  - **Tape Gateway** - Operates as a Virtual Tape Library
-- Relevant file information passing through Storage Gateway like file ownership, permissions, timestamps, etc. are stored as metadata for the objects that they belong to. Once these file details are stored in S3, they can be managed natively. This mean all S3 features like versioning, lifecycle management, bucket policies, cross region replication, etc. can be applied as a part of Storage Gateway.
-- Applications interfacing with AWS over the Volume Gateway is done over the iSCSI block protocol. Data written to these volumes can be asynchronously backed up into AWS Elastic Block Store (EBS) as point-in-time snapshots of the volumes’ content. These kind of snapshots act as incremental backups that capture only changed state similar to a pull request in Git. Further, all snapshots are compressed to reduce storage costs.
-- Tape Gateway offers a durable, cost-effective way of archiving and replicating data into S3 while getting rid of tapes (old-school data storage). The Virtual Tape Library, or VTL, leverages existing tape-based backup infrastructure to store data on virtual tape cartridges that you create on the Tape Gateway. It’s a great way to modernize and move backups into the cloud.
+### ストレージ・ゲートウェイの詳細
+- Storage Gatewayサービスは、物理デバイスか、オンプレミ・データセンターのホストにダウンロードされたVMイメージのどちらかになる。AWSからデータを送受信するためのブリッジとして機能する。
+- Storage Gatewayは、LinuxマシンではVMWareのESXiハイパーバイザー、WindowsマシンではMicrosoftのHyper-Vハイパーバイザーの上に置くことができる。
+- Storage Gatewayには以下の3種類がある：
+  - ファイル・ゲートウェイ（File Gateway）** - NFSまたはSMB経由で動作し、提供される仮想マシン内のネットワーク・ファイルシステム・マウント・ポイントを介してS3にファイルを格納するために使用される。簡単に言えば、File GatewayはS3上のファイルシステムマウントと考えることができる。
+  - Volume Gateway** - iSCSI経由で動作し、ハードディスクドライブまたは仮想ハードディスクドライブのコピーをS3に保存するために使用される。これらは*Stored Volumes*または*Cached Volumes*を介して実現できる。簡単に言えば、Volume Gatewayは仮想ハードディスクドライブをクラウドに保存する方法と考えることができる。
+  - テープ・ゲートウェイ** - 仮想テープ・ライブラリとして動作する。
+- ファイルの所有者、パーミッション、タイムスタンプなど、Storage Gatewayを通過する関連ファイル情報は、それらが属するオブジェクトのメタデータとして保存される。これらのファイル詳細がS3に保存されると、ネイティブに管理できるようになる。つまり、バージョニング、ライフサイクル管理、バケットポリシー、クロスリージョンレプリケーションなど、S3のすべての機能をStorage Gatewayの一部として適用できる。
+- ボリューム・ゲートウェイを介したAWSとのアプリケーション・インターフェースは、iSCSIブロック・プロトコルで行われる。これらのボリュームに書き込まれたデータは、ボリュームのコンテンツのポイントインタイムスナップショットとしてAWS Elastic Block Store（EBS）に非同期でバックアップできる。この種のスナップショットは、Gitにおけるプルリクエストと同様に、変更された状態のみをキャプチャする増分バックアップとして機能する。さらに、すべてのスナップショットはストレージ・コストを削減するために圧縮される。
+- Tape Gatewayは、テープ（旧式のデータストレージ）を取り除きながら、S3にデータをアーカイブし、レプリケートする耐久性があり、費用対効果の高い方法を提供する。仮想テープライブラリ（VTL）は、既存のテープベースのバックアップインフラを活用し、Tape Gateway上で作成した仮想テープカートリッジにデータを保存する。バックアップを近代化し、クラウドに移行する素晴らしい方法だ。
 
-### Stored Volumes vs. Cached Volumes:
-- Volume Gateway's **Stored Volumes** let you store data locally on-prem and backs the data up to AWS as a secondary data source. Stored Volumes allow low-latency access to entire datasets, while providing high availability over a hybrid cloud solution. Further, you can mount Stored Volumes on application infrastructure as iSCSI drives so when data is written to these volumes, the data is both written onto the on-prem hardware and asynchronously backed up as snapshots in AWS EBS or S3.
-  - In the following diagram of a Stored Volume architecture, data is served to the user from the Storage Area Network, Network Attached, or Direct Attached Storage within your data center. S3 exists just as a secure and reliable backup.
+### ストアドボリュームとキャッシュボリュームの比較：
+- Volume Gatewayの**Stored Volumes**では、データをオンプレミスのローカルに保存し、セカンダリデータソースとしてAWSにバックアップすることができます。Stored Volumesは、データセット全体への低レイテンシーアクセスを可能にすると同時に、ハイブリッドクラウドソリューション上での高可用性を提供します。さらに、Stored VolumesをiSCSIドライブとしてアプリケーションインフラにマウントすることができるので、これらのボリュームにデータが書き込まれると、データはオンプレミスのハードウェアに書き込まれ、AWS EBSまたはS3にスナップショットとして非同期にバックアップされる。
+  - 以下のStored Volumeアーキテクチャの図では、データはデータセンター内のStorage Area Network、Network Attached、またはDirect Attached Storageからユーザーに提供される。S3は安全で信頼できるバックアップとして存在する。
   - ![Screen Shot 2020-06-08 at 5 10 33 PM](https://user-images.githubusercontent.com/13093517/84080932-05cc5380-a9ab-11ea-8dd5-a80717b1b067.png)
 
-- Volume Gateway's **Cached Volumes** differ as they do not store the entire dataset locally like Stored Volumes. Instead, AWS is used as the primary data source and the local hardware is used as a caching layer. Only the most frequently used components are retained onto the on-prem infrastructure while the remaining data is served from AWS. This minimizes the need to scale on-prem infrastructure while still maintaining low-latency access to the most referenced data.
-  - In the following diagram of a Cached Volume architecture, the most frequently accessed data is served to the user from the Storage Area Network, Network Attached, or Direct Attached Storage within your data center. S3 serves the rest of the data from AWS.
+- Volume Gatewayの**Cached Volumes**は、Stored Volumesのようにデータセット全体をローカルに保存しない点が異なる。その代わり、AWSをプライマリー・データ・ソースとして使用し、ローカルのハードウェアをキャッシュ・レイヤーとして使用する。最も頻繁に使用されるコンポーネントのみがオンプレミスのインフラ上に保持され、残りのデータはAWSから提供される。これにより、オンプレミスのインフラを拡張する必要性を最小限に抑えつつ、最も参照されるデータへの低レイテンシーアクセスを維持することができる。
+  - 以下のCached Volumeアーキテクチャの図では、最も頻繁にアクセスされるデータは、データセンター内のStorage Area Network、Network Attached、またはDirect Attached Storageからユーザーに提供される。S3はAWSから残りのデータを提供する。
   - ![Screen Shot 2020-06-08 at 5 17 02 PM](https://user-images.githubusercontent.com/13093517/84081406-e5e95f80-a9ab-11ea-82d2-8bd1a53876ba.png)
 
 
@@ -497,46 +497,45 @@ EC2はサイズ変更可能なサーバーインスタンスをスピンアッ�
 
 ![architecture_ami_instance](https://user-images.githubusercontent.com/13093517/84097031-64a4c380-a9d1-11ea-8358-1c3eec1c4471.png)
 
-- You have the option of using dedicated tenancy with your instance. This means that within an AWS data center, you have exclusive access to physical hardware. Naturally, this option incurs a high cost, but it makes sense if you work with technology that has a strict licensing policy. 
-- With EC2 VM Import, you can import existing VMs into AWS as long as those hosts use VMware ESX, VMware Workstation, Microsoft Hyper-V, or Citrix Xen virtualization formats.
-- When you launch a new EC2 instance, EC2 attempts to place the instance in such a way that all of your VMs are spread out across different hardware to limit failure to a single location. You can use placement groups to influence the placement of a group of interdependent instances that meet the needs of your workload. There is an explanation about placement groups in a section below.
-- When you launch an instance in Amazon EC2, you have the option of passing user data to the instance when the instance starts. This user data can be used to run common automated configuration tasks or scripts. For example, you can pass a bash script that ensures htop is installed on the new EC2 host and is always active.
-- By default, the public IP address of an EC2 Instance is released when the instance is stopped even if its stopped temporarily. Therefore, it is best to refer to an instance by its external DNS hostname. If you require a persistent public IP address that can be associated to the same instance, use an Elastic IP address which is basically a static IP address instead. 
-- If you have requirements to self-manage a SQL database, EC2 can be a solid alternative to RDS. To ensure high availability, remember to have at least one other EC2 Instance in a separate Availability zone so even if a DB instance goes down, the other(s) will still be available.
-- A golden image is simply an AMI that you have fully customized to your liking with all necessary software/data/configuration details set and ready to go once. This personal AMI can then be the source from which you launch new instances.
-- Instance status checks check the health of the running EC2 server, systems status check monitor the health of the underlying hypervisor. If you ever notice a systems status issue, just stop the instance and start it again (no need to reboot) as the VM will start up again on a new hypervisor.
+- インスタンスに専用テナントを使用するオプションがあります。これは、AWSデータセンター内で、物理的なハードウェアに独占的にアクセスできることを意味する。当然、このオプションには高いコストがかかるが、厳格なライセンスポリシーを持つテクノロジーを扱う場合には理にかなっている。
+- EC2 VM Importでは、VMware ESX、VMware Workstation、Microsoft Hyper-V、またはCitrix Xenの仮想化フォーマットを使用しているホストであれば、既存のVMをAWSにインポートできる。
+- 新しいEC2インスタンスを起動すると、EC2はすべてのVMが異なるハードウェアに分散するようにインスタンスを配置し、障害が1カ所にとどまるようにする。配置グループを使用すると、ワークロードのニーズを満たす相互依存のインスタンスグループの配置に影響を与えることができる。プレースメントグループについては、以下のセクションで説明します。
+- Amazon EC2でインスタンスを起動する際、インスタンスの起動時にインスタンスにユーザーデータを渡すオプションがある。このユーザーデータは、一般的な自動設定タスクやスクリプトを実行するために使用できる。たとえば、htopが新しいEC2ホストにインストールされ、常にアクティブであることを確認するbashスクリプトを渡すことができる。
+- デフォルトでは、EC2インスタンスのパブリックIPアドレスは、インスタンスが一時的に停止していても、停止時に解放される。そのため、インスタンスは外部DNSホスト名で参照するのがベストである。同じインスタンスに関連付けられる永続的なパブリックIPアドレスが必要な場合は、代わりに基本的に静的IPアドレスであるElastic IPアドレスを使用する。
+- SQLデータベースを自己管理する必要がある場合、EC2はRDSの代替となる。高可用性を確保するには、少なくとも1台のEC2インスタンスを別のアベイラビリティゾーンに置くことを忘れないこと。
+- ゴールデンイメージとは、必要なソフトウェア／データ／設定の詳細をすべて設定し、すぐに使えるように完全にカスタマイズしたAMIのことだ。この個人用AMIは、新しいインスタンスを起動する際のソースとなります。
+- インスタンスのステータスチェックは実行中のEC2サーバーの健全性をチェックし、システムのステータスチェックは基盤となるハイパーバイザーの健全性を監視する。システムステータスの問題に気づいたら、インスタンスを停止し、VMが新しいハイパーバイザー上で再び起動するので、インスタンスを再度起動するだけでよい（再起動は不要）。
 
-### EC2 Instance Pricing:
-- **On-Demand instances** are based on a fixed rate by the hour or second. As the name implies, you can start an On-Demand instance whenever you need one and can stop it when you no longer need it. There is no requirement for a long-term commitment.
-- **Reserved instances** ensure that you keep exclusive use of an instance on 1 or 3 year contract terms. The long-term commitment provides significantly reduced discounts at the hourly rate. 
-- **Spot instances** take advantage of Amazon’s excess capacity and work in an interesting manner. In order to use them, you must financially bid for access. Because Spot instances are only available when Amazon has excess capacity, this option makes sense only if your app has flexible start and end times. You won’t be charged if your instance stops due to a price change (e.g., someone else just bid a higher price for the access) and so consequently your workload doesn’t complete. However, if you terminate the instance yourself you will be charged for any hour the instance ran. Spot instances are normally used in batch processing jobs. 
+### EC2インスタンスの価格：
+- オンデマンドインスタンス**は、時間または秒単位の固定料金に基づいています。その名の通り、必要なときにオンデマンドインスタンスを開始し、不要になったら停止することができます。長期的なコミットメントは必要ありません。
+- リザーブドインスタンス**では、1年または3年の契約期間でインスタンスを独占的に使用できます。長期のコミットメントにより、1時間単位で大幅な割引が適用されます。
+- スポット・インスタンス**は、アマゾンの余剰キャパシティを活用し、興味深い方法で動作します。スポット・インスタンスを利用するには、金銭的に入札する必要があります。スポット・インスタンスはアマゾンのキャパシティが余っている時にのみ利用できるため、このオプションはアプリの開始時間と終了時間がフレキシブルな場合にのみ意味がある。価格変更（例えば、誰かがアクセスに対してより高い価格を入札した）によってインスタンスが停止し、その結果ワークロードが完了しなかった場合でも、課金されることはありません。ただし、インスタンスを自分で終了させた場合は、インスタンスが稼働した時間に対して課金されます。スポット・インスタンスは通常、バッチ処理ジョブで使用されます。
 
-### Standard Reserved vs. Convertible Reserved vs. Scheduled Reserved:
-- **Standard Reserved Instances** have inflexible reservations that are discounted at 75% off of On-Demand instances. Standard Reserved Instances cannot be moved between regions. You can choose if a Reserved Instance applies to either a specific Availability Zone, or an Entire Region, but you cannot change the region.
-- **Convertible Reserved Instances** are instances that are discounted at 54% off of On-Demand instances, but you can also modify the instance type at any point. For example, you suspect that after a few months your VM might need to change from general purpose to memory optimized, but you aren't sure just yet. So if you think that in the future you might need to change your VM type or upgrade your VMs capacity, choose Convertible Reserved Instances. There is no downgrading instance type with this option though.
-- **Scheduled Reserved Instances** are reserved according to a specified timeline that you set. For example, you might use Scheduled Reserved Instances if you run education software that only needs to be available during school hours. This option allows you to better match your needed capacity with a recurring schedule so that you can save money.
+### 標準リザーブドインスタンスとコンバーチブルリザーブドインスタンスとスケジュールリザーブドインスタンス：
+- 標準リザーブドインスタンス**は、オンデマンドインスタンスの75%割引となる柔軟性のない予約です。標準リザーブドインスタンスはリージョン間で移動できません。リザーブドインスタンスは、特定のアベイラビリティゾーンまたはリージョン全体に適用するかどうかを選択できますが、リージョンを変更することはできません。
+- コンバーチブル・リザーブド・インスタンス**は、オンデマンド・インスタンスの54%割引で提供されるインスタンスです。例えば、数カ月後にVMを汎用型からメモリ最適型に変更する必要があるかもしれないが、まだ確信が持てないとします。そのため、将来的にVMのタイプを変更したり、VMの容量をアップグレードする必要があると考えられる場合は、コンバーチブル・リザーブド・インスタンスを選択してください。ただし、このオプションではインスタンス・タイプのダウングレードはできません。
+- スケジュール予約インスタンス**は、設定したタイムラインに従って予約されます。たとえば、学校の授業時間中だけ利用可能である必要がある教育ソフトウェアを実行する場合、スケジュール予約インスタンスを使用することができます。このオプションを使用すると、必要な容量と定期的なスケジュールをより適切に一致させることができるため、コストを節約できます。
 
 
-### EC2 Instance Lifecycle:
-The following table highlights the many instance states that a VM can be in at a given time. 
+### EC2インスタンスのライフサイクル：
+次の表は、VMがある時点で取り得る多くのインスタンス状態を示している。
 
 | Instance state | Description | Billing |
 | ------------- | ------------- |--------------|
-| `pending` | The instance is preparing to enter the `running` state. An instance enters the pending state when it launches for the first time, or when it is started after being in the `stopped` state.   | Not billed
-| `running`  | The instance is running and ready for use.  | Billed |
-| `stopping`  | The instance is preparing to be stopped or stop-hibernated.  | Not billed if preparing to stop. Billed if preparing to hibernate |
-| `stopped` | The instance is shut down and cannot be used. The instance can be started at any time. | Not billed |
-| `shutting-down`  | The instance is preparing to be terminated.  | Not billed |
-| `terminated`  | The instance has been permanently deleted and cannot be started.  | Not billed |
+| `pending` | インスタンスは `running` 状態に入る準備をしている。インスタンスが保留状態になるのは、初めて起動するときか、`stopped`状態の後に起動するときです。  | 未請求 |
+| `running`  | インスタンスは実行中であり、使用可能である。 | 課金対象 |
+| `stopping`  | インスタンスは停止または停止ハイバーネートの準備中です。 | 停止準備中の場合は課金されません。ハイバネート準備中の場合は課金されます。 |
+| `stopped` | インスタンスはシャットダウンされ、使用できなくなる。インスタンスはいつでも起動できます。| 課金されない |
+| `shutting-down`  | インスタンスは終了準備中です。 | 課金されない |
+| `terminated`  | インスタンスは永久に削除され、開始できません。 | 未請求 |
 
-**Note**: Reserved Instances that are terminated are billed until the end of their term.  
+**注***： 注意: 終了されたリザーブドインスタンスは、その期間が終了するまで課金されます。 
  
 ### EC2 Security:
-- When you deploy an Amazon EC2 instance, you are responsible for management of the guest operating system (including updates and security patches), any application software or utilities installed on the instances, and the configuration of the AWS-provided firewall (called a security group) on each instance. 
-- With EC2, termination protection of the instance is disabled by default. This means that you do not have a safe-guard in place from accidentally terminating your instance. You must turn this feature on if you want that extra bit of protection.
-- Amazon EC2 uses public–key cryptography to encrypt and decrypt login information. Public–key cryptography uses a public key to encrypt a piece of data, such as a password, and the recipient uses their private key to decrypt the data. The public and private keys are known as a key pair.
-- You can encrypt your root device volume which is where you install the underlying OS. You can do this during creation time of the instance or with third-party tools like bit locker. Of course, additional or secondary EBS volumes are also encryptable as well.
-- By default, an EC2 instance with an attached AWS Elastic Block Store (EBS) root volume will be deleted together when the instance is terminated. However, any additional or secondary EBS volume that is also attached to the same instance will be preserved. This is because the root EBS volume is for OS installations and other low-level settings. This rule can be modified, but it is usually easier to boot a new instance with a fresh root device volume than make use of an old one.
+- Amazon EC2インスタンスをデプロイすると、ゲストオペレーティングシステム（アップデートやセキュリティパッチを含む）、インスタンスにインストールされたアプリケーションソフトウェアやユーティリティ、各インスタンス上のAWS提供のファイアウォール（セキュリティグループと呼ばれる）の設定を管理する責任があります。
+- EC2では、インスタンスの終了保護はデフォルトで無効になっている。これは、誤ってインスタンスを終了させないためのセーフガードがないことを意味する。追加の保護が必要な場合は、この機能をオンにする必要がある。
+- Amazon EC2は、ログイン情報の暗号化と復号化に公開鍵暗号を使用する。公開鍵暗号方式では、公開鍵を使用してパスワードなどのデータの一部を暗号化し、受信者は秘密鍵を使用してデータを復号化します。公開鍵と秘密鍵は鍵ペアとして知られています。
+- OSをインストールするルート・デバイス・ボリュームを暗号化することができます。これはインスタンスの作成時に行うか、ビットロッカーのようなサードパーティツールで行うことができます。もちろん、追加ボリュームやセカンダリEBSボリュームも暗号化できる。
 
 
 ### EC2 Placement Groups:
